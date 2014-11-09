@@ -1,7 +1,7 @@
 Dublin Bus with Bluemix
 =============================
 
-The sample appplication is using [Flask microframework](http://flask.pocoo.org/) and is using Cloud Foundry buildpack for python(https://github.com/cf-buildpacks/compile-extensions.git)
+The sample appplication is using [Flask microframework](http://flask.pocoo.org/) and is using [Cloud Foundry buildpack for python](https://github.com/cf-buildpacks/compile-extensions.git)
 
 Web app page
 -----------------------
