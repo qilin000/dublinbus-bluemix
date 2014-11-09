@@ -4,8 +4,8 @@ import urllib
 import json 
 
 #Replace user and password with API key
-user = "linqi"
-password = "1710qi2014"
+user = "username"
+password = "password"
 
 BASE_URL = """http://"""+user+":"+password+"""@
 	www.dublinked.ie
