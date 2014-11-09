@@ -1,22 +1,12 @@
-Sample Python Web application
+Dublin Bus with Bluemix
 =============================
 
-The sample is using [Flask microframework](http://flask.pocoo.org/) and is intented to test the Python support on [Pivotal's Cloud Foundry](https://run.pivotal.io/).
+The sample appplication is using [Flask microframework](http://flask.pocoo.org/) and is using Cloud Foundry buildpack for python(https://github.com/cf-buildpacks/compile-extensions.git)
 
-Deploy to Cloud Foundry
+Web app page
 -----------------------
-```script
-cf push <YOUR_APP_NAME> -m 128M -b https://github.com/heroku/heroku-buildpack-python.git
-```
-or
-```script
-cf push <YOUR_APP_NAME> -m 128M -b https://github.com/joshuamckenty/heroku-buildpack-python.git
-```
-or
-```script
-cf push <YOUR_APP_NAME> -m 128M -b https://github.com/ephoning/heroku-buildpack-python.git
-````
+dublinbus2014.mybluemix.net
 
 Notes
 -----
-2014/02/18: The offical Heroku buildpack seems not to be working with Cloud Foundry.
+9Nov2014: will continue this app to make it work with Mongodb
