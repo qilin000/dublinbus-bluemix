@@ -5,7 +5,7 @@ The sample appplication is using [Flask microframework](http://flask.pocoo.org/)
 
 Web app page
 -----------------------
-dublinbus2014.mybluemix.net
+[Dublinbus on Bluemix](http://dublinbus2014.mybluemix.net)
 
 Notes
 -----
