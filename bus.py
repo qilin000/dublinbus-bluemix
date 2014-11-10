@@ -7,15 +7,9 @@ import pymongo
 import datetime
 from collections import Counter 
 
-<<<<<<< HEAD
-# Replace user and password with API key
-user = "linqi"
-password = "1710qi2014"
-=======
 #Replace user and password with API key
 user = "username"
 password = "password"
->>>>>>> 013da8bc9ac4b292d1ea636da610eb7b74ae2997
 
 app = Flask(__name__)  
 
