@@ -9,4 +9,5 @@ dublinbus2014.mybluemix.net
 
 Notes
 -----
+Remember to replace API key in bus.py
 9Nov2014: will continue this app to make it work with Mongodb
