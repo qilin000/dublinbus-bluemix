@@ -76,13 +76,13 @@ def stopid(stop):
 	wdata = json.load(data)  
 	print json.dumps(wdata, indent=2)
 
-	page='<title>Display all routes for bus stop'+wdata["stopid"]+'</title>'
+	page='<title>Display all routes for bus stop '+wdata["stopid"]+'</title>'
 	page +='<h1>Display all routes for bus stop '+wdata["stopid"]+'</h1>'
 	page +='<p> Now: '+ wdata["timestamp"]+ '</p>'
 
 	# Our app is lazy, it refuses working during nights...
 	if wdata["errorcode"] == "1":
-		page +='<p>Sorry, no data for Route'+wdata["stopid"]+' &#95;&#40;&#58;&#1079;&#12301;&ang;&#41;&#95;</p>'
+		page +='<p>Sorry, no data for Bus stop '+wdata["stopid"]+' &#95;&#40;&#58;&#1079;&#12301;&ang;&#41;&#95;</p>'
 
 	else:
 
