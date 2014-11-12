@@ -1,0 +1,15 @@
+
+{
+    "stopid": "262",
+    "timestamp": "29/10/2014 13:37:29",
+    "arrivaldatetime": "29/10/2014 13:40:59",
+    "duetime": "3",
+    "departuredatetime": "29/10/2014 13:40:59",
+    "departureduetime": "3",
+    "scheduledarrivaldatetime": "29/10/2014 13:43:00",
+    "scheduleddeparturedatetime": "29/10/2014 13:43:00",
+    "destination": "Ballinteer",
+    "origin": "Dublin Airport",
+    "route": "16",
+    "sourcetimestamp": "29/10/2014 13:36:09"
+}

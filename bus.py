@@ -7,15 +7,9 @@ import pymongo
 import datetime
 from collections import Counter 
 
-<<<<<<< HEAD
 # Replace user and password with API key
 user = "linqi"
 password = "1710qi2014"
-=======
-#Replace user and password with API key
-user = "username"
-password = "password"
->>>>>>> 013da8bc9ac4b292d1ea636da610eb7b74ae2997
 
 app = Flask(__name__)  
 
@@ -23,10 +17,11 @@ app = Flask(__name__)
 if 'VCAP_SERVICES' in os.environ:  
 	mongoInfo = json.loads(os.environ['VCAP_SERVICES'])['mongolab'][0]  
 	mongodb_uri = mongoInfo['credentials']['uri']
-	uri = "mongodb://IbmCloud_queosken_kiqc0i9g_f0v8dihf:7izsvYMIMHS3OU0-Q9JgQDrrk6KdWV2O@ds049570.mongolab.com:49570/IbmCloud_queosken_kiqc0i9g"
+	# uri = "mongodb://IbmCloud_queosken_kiqc0i9g_f0v8dihf:7izsvYMIMHS3OU0-Q9JgQDrrk6KdWV2O@ds049570.mongolab.com:49570/IbmCloud_queosken_kiqc0i9g"
 	client = pymongo.MongoClient(mongodb_uri)
 	# Create the 'dublinbus' collection in 'IbmCloud_queosken_kiqc0i9g' database in Mongolab
-	bus = client.IbmCloud_queosken_kiqc0i9g.dublinbus
+	# WARNING: need to change db name everytime push to new app
+	bus = client.IbmCloud_queosken_d9ure9tq.dublinbus
 	
 # or we are local  
 else:  
@@ -82,15 +77,18 @@ def stopid(stop):
 	wdata = json.load(data)  
 	print json.dumps(wdata, indent=2)
 
-	page='<title>Display all routes for bus stop'+wdata["stopid"]+'</title>'
+	page = '<!doctype html>'
+	page +='<head><title>Display all routes for bus stop '+wdata["stopid"]+'</title>'
+	page += '<meta http-equiv="refresh" content="60"></head>'
+	page += '<body>'
 	page +='<h1>Display all routes for bus stop '+wdata["stopid"]+'</h1>'
 	page +='<p> Now: '+ wdata["timestamp"]+ '</p>'
 
 	# Our app is lazy, it refuses working during nights...
 	if wdata["errorcode"] == "1":
-		page +='<p>Sorry, no data for Route'+wdata["stopid"]+' &#95;&#40;&#58;&#1079;&#12301;&ang;&#41;&#95;</p>'
+		page +='<p>Sorry, no data for Bus stop '+wdata["stopid"]+' &#95;&#40;&#58;&#1079;&#12301;&ang;&#41;&#95;</p>'
 
-	else:
+	elif wdata["errorcode"] == "0":
 
 		for i,j in enumerate(wdata["results"], start=1): 
 			page += '<h3>#'+ str(i)+'</h3>'
@@ -98,6 +96,9 @@ def stopid(stop):
 			page += '<p>Due in: '+ str(j["duetime"])+'min </p>'  
 			page += '<p>From: '+ str(j["origin"])+'</p>'  
 			page += '<p>To: '+str(j["destination"])+'</p>'
+
+	else:
+		page +='<p>Hey, are you sure you got internet connected?'+' &#95;&#40;&#58;&#1079;&#12301;&ang;&#41;&#95;</p>'
 
 	# Gather information from database about which stop was requested how many times 
 	stopid = sorted([item["stopid"] for item in bus.find()])
@@ -109,12 +110,13 @@ def stopid(stop):
 	counter = c.most_common()
 	page += '<br/><h3>Total requests so far: '+ str(sum(c.values())) +'</h3>'
 	for item in counter:
-		page += "<p>Route #"+ item[0] + ":  " + str(item[1]) + "</p>"
+		page += "<p>Stop #"+ item[0] + ":  " + str(item[1]) + "</p>"
 
 
 	# Finish the page structure and return it 
 	page += '<hr>'
-	page += '<br/><br/>Data by <a href="http://dublinked.ie">Dublinked</a>'  
+	page += '<br/><br/>Data by <a href="http://dublinked.ie">Dublinked</a>'
+	page += '</body>'  
 
 	return page  
 
