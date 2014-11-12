@@ -17,7 +17,6 @@ app = Flask(__name__)
 if 'VCAP_SERVICES' in os.environ:  
 	mongoInfo = json.loads(os.environ['VCAP_SERVICES'])['mongolab'][0]  
 	mongodb_uri = mongoInfo['credentials']['uri']
-	# uri = "mongodb://IbmCloud_queosken_kiqc0i9g_f0v8dihf:7izsvYMIMHS3OU0-Q9JgQDrrk6KdWV2O@ds049570.mongolab.com:49570/IbmCloud_queosken_kiqc0i9g"
 	client = pymongo.MongoClient(mongodb_uri)
 	# Create the 'dublinbus' collection in 'IbmCloud_queosken_kiqc0i9g' database in Mongolab
 	# WARNING: need to change db name everytime push to new app
@@ -77,10 +76,12 @@ def stopid(stop):
 	wdata = json.load(data)  
 	print json.dumps(wdata, indent=2)
 
+
 	page = '<!doctype html>'
 	page +='<head><title>Display all routes for bus stop '+wdata["stopid"]+'</title>'
 	page += '<meta http-equiv="refresh" content="60"></head>'
 	page += '<body>'
+
 	page +='<h1>Display all routes for bus stop '+wdata["stopid"]+'</h1>'
 	page +='<p> Now: '+ wdata["timestamp"]+ '</p>'
 
