@@ -93,8 +93,11 @@ def stopid(stop):
 
 		for i,j in enumerate(wdata["results"], start=1): 
 			page += '<h3>#'+ str(i)+'</h3>'
-			page += '<p>Route: '+ str(j["route"])+'</p>'   
-			page += '<p>Due in: '+ str(j["duetime"])+'min </p>'  
+			page += '<p>Route: '+ str(j["route"])+'</p>'
+			if j["duetime"] == 'due' or 'Due':
+				page += '<p>Due in: '+ str(j["duetime"])+'</p>'
+			else: 	 	   
+				page += '<p>Due in: '+ str(j["duetime"])+'min </p>'  
 			page += '<p>From: '+ str(j["origin"])+'</p>'  
 			page += '<p>To: '+str(j["destination"])+'</p>'
 
