@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Display all routes for bus stop {{ stopid }}</title>
+    <meta http-equiv="refresh" content="60">
+</head>
+
+<body>
+    {% if errorcode == 0 %}
+    <h1>Display all routes for bus stop {{ stopid }}</h1>
+    <p>Now: {{ timestamp }}</p>
+
+    {% for entry in entries %}
+    <div class="bus">
+        <h3>#{{ entry.id }}</h3>
+        <p>Route: {{entry.route}}</p>
+        <p>Due in: {{entry.duetime}}</p>
+        <p>From: {{entry.origin}}</p>
+        <p>To: {{entry.destination}}</p>
+    </div>
+    {% endfor %}
+
+    <br>
+    <br>
+
+    <div class="req">
+        <h3>Total requests so far: {{ req_total}}</h3>
+        {% for req in requests %}
+        <p>Stop #{{ req.stop }}: {{ req.sum }}</p>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>Sorry, no data for Bus stop {{ stopid }} &#95;&#40;&#58;&#1079;&#12301;&ang;&#41;&#95;</p>
+    {% endif %}
+
+    <hr>Data by <a href="http://dublinked.ie">Dublinked</a>
+</body>
+
+</html>
