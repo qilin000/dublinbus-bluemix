@@ -1,0 +1,421 @@
+Last login: Sat Dec  6 23:38:32 on ttys000
+Lins-MacBook-Pro:~ linqi$ cd Projects
+Lins-MacBook-Pro:Projects linqi$ ls
+3rd_Party			Renpy_Game
+Amazeriffic			adt-bundle-mac-x86_64-20140702
+CA				android_workplace
+Chapter1			angular.min.js
+Chapter2			bluemix
+Chapter3			bluemix-warehouse
+Code				bootstrap-3.2.0-dist
+Dublinbus-webcrawler		codingbat
+Learning			jQuery_test
+RTPI-XML-JSON
+Lins-MacBook-Pro:Projects linqi$ git bluemix
+git: 'bluemix' is not a git command. See 'git --help'.
+Lins-MacBook-Pro:Projects linqi$ cd bluemix
+Lins-MacBook-Pro:bluemix linqi$ ls
+Procfile		db.py			requirements.txt
+README.md		db.pyc			runtime.txt
+app.py			icon.png		test
+bus.py			output_template.json
+Lins-MacBook-Pro:bluemix linqi$ cf api https://api.ng.bluemix.net
+Setting api endpoint to https://api.ng.bluemix.net...
+OK
+
+                   
+API endpoint:   https://api.ng.bluemix.net (API version: 2.14.0)   
+User:           leipannn@ie.ibm.com   
+Org:            LEIPANNN@ie.ibm.com   
+Space:          dev   
+Lins-MacBook-Pro:bluemix linqi$ cf login
+API endpoint: https://api.ng.bluemix.net
+
+Email> LEIPANNN@ie.ibm.com
+
+Password> 
+Authenticating...
+OK
+
+Targeted org LEIPANNN@ie.ibm.com
+
+Targeted space dev
+
+
+                   
+API endpoint:   https://api.ng.bluemix.net (API version: 2.14.0)   
+User:           leipannn@ie.ibm.com   
+Org:            LEIPANNN@ie.ibm.com   
+Space:          dev   
+Lins-MacBook-Pro:bluemix linqi$ cf push dublinbus2014 -m 64M -b https://github.com/cloudfoundry/cf-buildpack-python.git -c "python app.py"
+Creating app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+Creating route dublinbus2014.mybluemix.net...
+OK
+
+Binding dublinbus2014.mybluemix.net to dublinbus2014...
+OK
+
+Uploading dublinbus2014...
+Uploading app files from: /Users/linqi/Projects/bluemix
+Uploading 11.1K, 12 files
+OK
+
+Starting app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+Submodule 'compile-extensions' (https://github.com/cf-buildpacks/compile-extensions.git) registered for path 'compile-extensions'
+         Running setup.py (path:/tmp/pip_build_vcap/Flask/setup.py) egg_info for package Flask
+           warning: no files found matching '*' under directory 'tests'
+           no previously-included directories found matching 'docs/_themes/.git'
+       Downloading/unpacking PyMongo==2.7.2 (from -r requirements.txt (line 2))
+       Downloading/unpacking Werkzeug>=0.7 (from Flask==0.10.1->-r requirements.txt (line 1))
+         Running setup.py (path:/tmp/pip_build_vcap/Werkzeug/setup.py) egg_info for package Werkzeug
+           warning: no files found matching '*' under directory 'werkzeug/debug/templates'
+           warning: no files found matching '*' under directory 'tests'
+       Downloading/unpacking Jinja2>=2.4 (from Flask==0.10.1->-r requirements.txt (line 1))
+           warning: no files found matching '*' under directory 'custom_fixers'
+       Downloading/unpacking markupsafe (from Jinja2>=2.4->Flask==0.10.1->-r requirements.txt (line 1))
+         Downloading MarkupSafe-0.23.tar.gz
+         Running setup.py (path:/tmp/pip_build_vcap/markupsafe/setup.py) egg_info for package markupsafe
+           warning: no files found matching '*' under directory 'tests'
+           gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Ibson -I/app/.heroku/python/include/python2.7 -c bson/buffer.c -o build/temp.linux-x86_64-2.7/bson/buffer.o
+           gcc -pthread -shared build/temp.linux-x86_64-2.7/bson/_cbsonmodule.o build/temp.linux-x86_64-2.7/bson/time64.o build/temp.linux-x86_64-2.7/bson/buffer.o build/temp.linux-x86_64-2.7/bson/encoding_helpers.o -o build/lib.linux-x86_64-2.7/bson/_cbson.so
+           gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Ibson -I/app/.heroku/python/include/python2.7 -c pymongo/_cmessagemodule.c -o build/temp.linux-x86_64-2.7/pymongo/_cmessagemodule.o
+           gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Ibson -I/app/.heroku/python/include/python2.7 -c bson/buffer.c -o build/temp.linux-x86_64-2.7/bson/buffer.o
+           warning: no files found matching '*' under directory 'werkzeug/debug/templates'
+         Running setup.py install for Jinja2
+           warning: no files found matching '*' under directory 'custom_fixers'
+-----> Uploading droplet (31M)
+
+0 of 1 instances running, 1 down
+^CLins-MacBook-Pro:bluemix linqi$ cf push dublinbus2014 -m 64M -b https://githubom/cloudfoundry/cf-buildpack-python.git -c "python app.py"
+Updating app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+Uploading dublinbus2014...
+Uploading app files from: /Users/linqi/Projects/bluemix
+Uploading 11.1K, 12 files
+OK
+
+Stopping app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+Starting app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+FAILED
+Server error, status code: 400, error code: 170001, message: Staging error: failed to stage application: another staging request was initiated
+Lins-MacBook-Pro:bluemix linqi$ cf push dublinbus2014 -m 64M -b https://github.com/cloudfoundry/cf-buildpack-python.git -c "python app.py"
+Updating app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+Uploading dublinbus2014...
+Uploading app files from: /Users/linqi/Projects/bluemix
+Uploading 11.1K, 12 files
+OK
+
+Stopping app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+Starting app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+Cloning into '/tmp/buildpacks/cf-buildpack-python'...
+       Cleaning up...
+
+0 of 1 instances running, 1 down
+0 of 1 instances running, 1 down
+0 of 1 instances running, 1 down
+0 of 1 instances running, 1 down
+0 of 1 instances running, 1 down
+0 of 1 instances running, 1 down
+^CLins-MacBook-Pro:bluemix linqi$ cf logs
+FAILED
+Incorrect Usage.
+
+NAME:
+   logs - Tail or show recent logs for an app
+
+USAGE:
+   cf logs APP
+
+OPTIONS:
+   --recent	Dump recent logs instead of tailing
+
+Lins-MacBook-Pro:bluemix linqi$ cf logs --recent
+FAILED
+Incorrect Usage.
+
+NAME:
+   logs - Tail or show recent logs for an app
+
+USAGE:
+   cf logs APP
+
+OPTIONS:
+   --recent	Dump recent logs instead of tailing
+
+Lins-MacBook-Pro:bluemix linqi$ cf logs --recent
+FAILED
+Incorrect Usage.
+
+NAME:
+   logs - Tail or show recent logs for an app
+
+USAGE:
+   cf logs APP
+
+OPTIONS:
+   --recent	Dump recent logs instead of tailing
+
+Lins-MacBook-Pro:bluemix linqi$ cf log --recent
+cf: 'log' is not a registered command. See 'cf help'
+Lins-MacBook-Pro:bluemix linqi$ cf help
+NAME:
+   cf - A command line tool to interact with Cloud Foundry
+
+USAGE:
+   [environment variables] cf [global options] command [arguments...] [command options]
+
+VERSION:
+   6.6.2-0c953cf-2014-10-17T18:10:36+00:00
+
+BUILD TIME:
+   2014-12-10 00:01:58.19044105 +0000 GMT
+   
+GETTING STARTED:
+   login, l                                      Log user in
+   logout, lo                                    Log user out
+   passwd, pw                                    Change user password
+   target, t                                     Set or view the targeted org or space
+
+   api                                           Set or view target api url
+   auth                                          Authenticate user non-interactively
+
+APPS:
+   apps, a                                       List all apps in the target space
+   app                                           Display health and status for app
+
+   push, p                                       Push a new app or sync changes to an existing app
+   scale                                         Change or view the instance count, disk space limit, and memory limit for an app
+   delete, d                                     Delete an app
+   rename                                        Rename an app
+
+   start, st                                     Start an app
+   stop, sp                                      Stop an app
+   restart, rs                                   Restart an app
+   restage, rg                                   Restage an app
+
+   events                                        Show recent app events
+   files, f                                      Print out a list of files in a directory or the contents of a specific file
+   logs                                          Tail or show recent logs for an app
+
+   env, e                                        Show all env variables for an app
+   set-env, se                                   Set an env variable for an app
+   unset-env                                     Remove an env variable
+
+   stacks                                        List all stacks (a stack is a pre-built file system, including an operating system, that can run apps)
+
+SERVICES:
+   marketplace, m                                List available offerings in the marketplace
+   services, s                                   List all service instances in the target space
+   service                                       Show service instance info
+
+   create-service, cs                            Create a service instance
+   delete-service, ds                            Delete a service instance
+   rename-service                                Rename a service instance
+
+   bind-service, bs                              Bind a service instance to an app
+   unbind-service, us                            Unbind a service instance from an app
+
+   create-user-provided-service, cups            Make a user-provided service instance available to cf apps
+   update-user-provided-service, uups            Update user-provided service instance name value pairs
+
+ORGS:
+   orgs, o                                       List all orgs
+   org                                           Show org info
+
+   create-org, co                                Create an org
+   delete-org                                    Delete an org
+   rename-org                                    Rename an org
+
+SPACES:
+   spaces                                        List all spaces in an org
+   space                                         Show space info
+
+   create-space                                  Create a space
+   delete-space                                  Delete a space
+   rename-space                                  Rename a space
+
+DOMAINS:
+   domains                                       List domains in the target org
+   create-domain                                 Create a domain in an org for later use
+   delete-domain                                 Delete a domain
+   create-shared-domain                          Create a domain that can be used by all orgs (admin-only)
+   delete-shared-domain                          Delete a shared domain
+
+ROUTES:
+   routes, r                                     List all routes in the current space
+   create-route                                  Create a url route in a space for later use
+   map-route                                     Add a url route to an app
+   unmap-route                                   Remove a url route from an app
+   delete-route                                  Delete a route
+   delete-orphaned-routes                        Delete all orphaned routes (e.g.: those that are not mapped to an app)
+
+BUILDPACKS:
+   buildpacks                                    List all buildpacks
+   create-buildpack                              Create a buildpack
+   update-buildpack                              Update a buildpack
+   rename-buildpack                              Rename a buildpack
+   delete-buildpack                              Delete a buildpack
+
+USER ADMIN:
+   create-user                                   Create a new user
+   delete-user                                   Delete a user
+
+   org-users                                     Show org users by role
+   set-org-role                                  Assign an org role to a user
+   unset-org-role                                Remove an org role from a user
+
+   space-users                                   Show space users by role
+   set-space-role                                Assign a space role to a user
+   unset-space-role                              Remove a space role from a user
+
+ORG ADMIN:
+   quotas                                        List available usage quotas
+   quota                                         Show quota info
+   set-quota                                     Assign a quota to an org
+
+   create-quota                                  Define a new resource quota
+   delete-quota                                  Delete a quota
+   update-quota                                  Update an existing resource quota
+
+SPACE ADMIN:
+   space-quota                                   Show space quota info
+   space-quotas                                  List available space resource quotas
+   create-space-quota                            Define a new space resource quota
+   update-space-quota                            update an existing space quota
+   delete-space-quota                            Delete a space quota definition and unassign the space quota from all spaces
+   set-space-quota                               Assign a space quota definition to a space
+   unset-space-quota                             Unassign a quota from a space
+
+SERVICE ADMIN:
+   service-auth-tokens                           List service auth tokens
+   create-service-auth-token                     Create a service auth token
+   update-service-auth-token                     Update a service auth token
+   delete-service-auth-token                     Delete a service auth token
+
+   service-brokers                               List service brokers
+   create-service-broker                         Create a service broker
+   update-service-broker                         Update a service broker
+   delete-service-broker                         Delete a service broker
+   rename-service-broker                         Rename a service broker
+
+   migrate-service-instances                     Migrate service instances from one service plan to another
+   purge-service-offering                        Recursively remove a service and child objects from Cloud Foundry database without making requests to a service broker
+
+   service-access                                List service access settings
+   enable-service-access                         Enable access to a service or service plan for one or all orgs
+   disable-service-access                        Disable access to a service or service plan for one or all orgs
+
+SECURITY GROUP:
+   security-group                                Show a single security group
+   security-groups                               List all security groups
+   create-security-group                         Create a security group
+   update-security-group                         Update a security group
+   delete-security-group                         Deletes a security group
+   bind-security-group                           Bind a security group to a space
+   unbind-security-group                         Unbind a security group from a space
+
+   bind-staging-security-group                   Bind a security group to the list of security groups to be used for staging applications
+   staging-security-groups                       List security groups in the staging set for applications
+   unbind-staging-security-group                 Unbind a security group from the set of security groups for staging applications
+
+   bind-running-security-group                   Bind a security group to the list of security groups to be used for running applications
+   running-security-groups                       List security groups in the set of security groups for running applications
+   unbind-running-security-group                 Unbind a security group from the set of security groups for running applications
+
+ENVIRONMENT VARIABLE GROUPS:
+   running-environment-variable-group, revg      Retrieve the contents of the running environment variable group
+   staging-environment-variable-group, sevg      Retrieve the contents of the staging environment variable group
+   set-staging-environment-variable-group, ssevg Pass parameters as JSON to create a staging environment variable group
+   set-running-environment-variable-group, srevg Pass parameters as JSON to create a running environment variable group
+
+FEATURE FLAGS:
+   feature-flags                                 Retrieve list of feature flags with status of each flag-able feature
+   feature-flag                                  Retrieve an individual feature flag with status
+   enable-feature-flag                           Enable the use of a feature so that users have access to and can use the feature.
+   disable-feature-flag                          Disable the use of a feature so that users have access to and can use the feature.
+
+ADVANCED:
+   curl                                          Executes a raw request, content-type set to application/json by default
+   config                                        write default values to the config
+
+PLUGIN:
+   plugins                                       list all available plugin commands
+   install-plugin                                Install the plugin defined in command argument
+   uninstall-plugin                              Uninstall the plugin defined in command argument
+
+INSTALLED PLUGINS:
+
+ENVIRONMENT VARIABLES
+   CF_COLOR=false                     Do not colorize output
+   CF_HOME=path/to/dir/               Override path to default config directory
+   CF_STAGING_TIMEOUT=15              Max wait time for buildpack staging, in minutes
+   CF_STARTUP_TIMEOUT=5               Max wait time for app instance startup, in minutes
+   CF_TRACE=true                      Print API request diagnostics to stdout
+   CF_TRACE=path/to/trace.log         Append API request diagnostics to a log file
+   HTTP_PROXY=proxy.example.com:8080  Enable HTTP proxying for API requests
+
+GLOBAL OPTIONS
+   --version, -v                      Print the version
+   --help, -h                         Show help
+Lins-MacBook-Pro:bluemix linqi$ cf logs dublinbus2014
+Connected, tailing logs for app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+
+2014-12-10T00:02:44.85+0000 [App/0]   ERR Traceback (most recent call last):
+2014-12-10T00:02:44.85+0000 [App/0]   ERR   File "/home/vcap/app/db.py", line 16, in getDb
+2014-12-10T00:02:44.85+0000 [App/0]   ERR     mongoInfo = json.loads(os.environ['VCAP_SERVICES'])['mongolab'][0]  
+2014-12-10T00:02:44.94+0000 [DEA]     ERR Instance (index 0) failed to start accepting connections
+2014-12-10T00:03:39.53+0000 [DEA]     OUT Starting app instance (index 0) with guid 6e69b9cf-467e-47b2-b061-a5b61d14dd96
+2014-12-10T00:03:44.93+0000 [App/0]   ERR   File "app.py", line 17, in <module>
+2014-12-10T00:03:44.93+0000 [App/0]   ERR     bus = getDb()
+2014-12-10T00:03:44.93+0000 [App/0]   ERR NameError: global name 'json' is not defined
+2014-12-10T00:03:45.02+0000 [DEA]     ERR Instance (index 0) failed to start accepting connections
+2014-12-10T00:03:45.04+0000 [API]     OUT App instance exited with guid 6e69b9cf-467e-47b2-b061-a5b61d14dd96 payload: {"cc_partition"=>"default", "droplet"=>"6e69b9cf-467e-47b2-b061-a5b61d14dd96", "version"=>"15fd1e03-382c-4928-a394-42876e5fa53f", "instance"=>"193a46822a8446d58ff0bf358a64ba32", "index"=>0, "reason"=>"CRASHED", "exit_status"=>1, "exit_description"=>"failed to accept connections within health check timeout", "crash_timestamp"=>1418169825}
+2014-12-10T00:03:45.04+0000 [API]     OUT App instance exited with guid 6e69b9cf-467e-47b2-b061-a5b61d14dd96 payload: {"cc_partition"=>"default", "droplet"=>"6e69b9cf-467e-47b2-b061-a5b61d14dd96", "version"=>"15fd1e03-382c-4928-a394-42876e5fa53f", "instance"=>"193a46822a8446d58ff0bf358a64ba32", "index"=>0, "reason"=>"CRASHED", "exit_status"=>1, "exit_description"=>"failed to accept connections within health check timeout", "crash_timestamp"=>1418169825}
+^CLins-MacBook-Pro:bluemix linqi$ cf push dublinbus2014 -m 64M -b https://github.com/cloudfoundry/cf-buildpacpython.git -c "python app.py"
+Updating app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+Uploading dublinbus2014...
+Uploading app files from: /Users/linqi/Projects/bluemix
+Uploading 11.1K, 12 files
+OK
+
+Stopping app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+Starting app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+Cloning into '/tmp/buildpacks/cf-buildpack-python'...
+Submodule 'compile-extensions' (https://github.com/cf-buildpacks/compile-extensions.git) registered for path 'compile-extensions'
+Cloning into 'compile-extensions'...
+Submodule path 'compile-extensions': checked out '1b84b6955b115c84a552eaed2a28b1ae5dfb0456'
+-------> Buildpack version 1.1.0
+-----> Uploading droplet (31M)
+
+0 of 1 instances running, 1 starting
+1 of 1 instances running
+
+App started
+
+Showing health and status for app dublinbus2014 in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+requested state: started
+instances: 1/1
+usage: 64M x 1 instances
+urls: dublinbus2014.mybluemix.net
+
+     state     since                    cpu    memory       disk   
+#0   running   2014-12-10 12:05:30 AM   0.0%   19M of 64M   117.4M of 1G   
+Lins-MacBook-Pro:bluemix linqi$ 

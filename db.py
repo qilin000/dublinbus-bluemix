@@ -3,6 +3,7 @@
 import re
 import os  
 import pymongo
+import json
 
 def db_name(uri):
 	#uri = "mongodb://IbmCloud_queosken_d9ure9tq_8me846fu:PTRo6ZoIZb7L6tR1NuSMfGld4iN3fskC@ds049570.mongolab.com:49570/IbmCloud_queosken_d9ure9tq"
@@ -17,7 +18,8 @@ def getDb():
 		mongodb_uri = mongoInfo['credentials']['uri']
 		client = pymongo.MongoClient(mongodb_uri)
 		# Create the 'dublinbus' collection in 'IbmCloud_queosken_kiqc0i9g' database in Mongolab
-		db = db.name(mongodb_uri)
+		db = db_name(mongodb_uri)
+		# Dublinbus collection
 		bus = client[db].dublinbus
 		return bus
 
