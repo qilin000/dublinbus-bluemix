@@ -12,3 +12,5 @@ Notes
 09Nov2014: working on this app to make it work with Mongodb
 
 10Nov2014: now this app is working with Mongodb
+
+05FEB2015: complete "search by bus stop" service
