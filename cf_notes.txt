@@ -1,3 +1,3 @@
 cf api https://api.ng.bluemix.net
 cf login
-cf push myserver1 -m 32M -b https://github.com/cloudfoundry/cf-buildpack-python.git -c "python server.py"
+cf push dublin-bus -m 64M -b https://github.com/cloudfoundry/cf-buildpack-python.git -c "python app.py"
