@@ -1,0 +1,45 @@
+.heading {
+    color: white;
+    font-size: 100%;
+}
+#search-bar {
+    background: black;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.enjoy-input {
+    margin-left: 20px;
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    padding: 10px 40px;
+    border: 1px solid #b7b7b7;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    font: normal medium/normal Arial, Helvetica, sans-serif;
+    color: rgba(0, 142, 198, 1);
+    text-indent: 0px;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: url("../images/search.png"), rgba(252, 252, 252, 1);
+    background-repeat: no-repeat;
+    background-position: 5% 49%;
+    -webkit-background-origin: padding-box;
+    background-origin: padding-box;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-background-size: 8% auto;
+    background-size: 8% auto;
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.66);
+}
+.enjoy-input:hover {
+    border: 1px solid #a3a3a3;
+}
+.enjoy-input:focus {
+    border: 1px solid #018dc4;
+    -webkit-box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.2) inset;
+}

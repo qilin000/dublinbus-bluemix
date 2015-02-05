@@ -1,9 +1,30 @@
-# -*- coding: utf-8 -*-
-
+import urllib  
+import json
 import re
 import os  
 import pymongo
-import json
+
+# Replace user and password with API key
+user = "linqi"
+password = "1710qi2014"
+
+def getData(stopid):
+    # realtime bus information
+    rturl = "/cgi-bin/rtpi/realtimebusinformation?"
+    host = "www.dublinked.ie"
+    header = "http://"+user+":"+password+"@"
+    rtquery = urllib.urlencode({'stopid': stopid, 'operator': 'bac', 'format': 'json'})
+
+    # request url
+    request = header + host + rturl + rtquery
+
+    # get file from request
+    data = urllib.urlopen(request)
+
+    # Type: dict
+    wdata = json.load(data)
+    
+    return wdata
 
 def db_name(uri):
 	#uri = "mongodb://IbmCloud_queosken_d9ure9tq_8me846fu:PTRo6ZoIZb7L6tR1NuSMfGld4iN3fskC@ds049570.mongolab.com:49570/IbmCloud_queosken_d9ure9tq"

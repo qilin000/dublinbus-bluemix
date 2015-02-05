@@ -1,56 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Display all routes for bus stop {{ stopid }}</title>
-    <meta http-equiv="refresh" content="60">
-    <meta charset="UTF-8">
+    <title>Wordcount</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/responsive_table.css') }}" />
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/menus-nr-min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+    <style>
+        .container {
+            max-width: 1000px;
+        }
+    </style>
 </head>
 
 <body>
-    {% if errorcode == 0 %}
-    <div class="rg-container">
-        <div class="rg-header">
-            <div class="rg-hed">Display all routes for bus stop {{ stopid }}</div>
-            <div class="rg-subhed">Last updated: {{ timestamp }}</div>
-        </div>
-        {% for entry in entries %}
-        <div class="rg-content rg-table">
-            <table class="rg-table">
-                <thead>
-                    <th class="text rg-th">Route</th>
-                    <th class="text rg-th">Due</th>
-                    <th class="text rg-th">From</th>
-                    <th class="text rg-th">To</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text" data-title="Route">{{entry.route}}</td>
-                        <td class="text" data-title="Due">{{entry.duetime}}</td>
-                        <td class="text" data-title="From">{{entry.origin}}</td>
-                        <td class="text" data-title="To">{{entry.destination}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        {% endfor %}
-        <div class="rg-source-and-credit">
-            <div class="rg-source"><span class="pre-colon">DATA</span>: <span class="post-colon"><a href="http://dublinked.ie">Dublinked</a></span>
+    <div class="body">
+        <div class="header">
+            <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed" id="search-bar">
+                    <a class="pure-menu-heading" href=""><span class="heading">Dublin Bus App</span></a>
+                    <ul id="search-form">
+                        <li>
+                            <div class="light">
+<form role="form" method='POST' action='/'>
+	<span><input input type="text" name="stopid" class="enjoy-input" placeholder="Search by stop number" style="max-width: 450px;" value="{{ stop }}"></span>
+</form>
+</div>
+                        </li>
+                    </ul>        
             </div>
-            <div class="rg-credit">Globe Staff</div>
         </div>
 
-        <div class="req">
-            <h3>Total requests so far: {{ req_total}}</h3>
-            {% for req in requests %}
-            <p>Stop #{{ req.stop }}: {{ req.sum }}</p>
-            {% endfor %}
+        <br>
+        
+        <div class="rg-container">
+            {% if errorcode == 0 %}
+            <div class="rg-header">
+                <div class="rg-hed">Display all routes for bus stop #{{ stop }}</div>
+            </div>
+            
+            <div class="rg-content rg-table">
+                <table class="rg-table">
+                    <thead>
+                        <th class="text rg-th">Route</th>
+                        <th class="text rg-th">Due</th>
+                        <th class="text rg-th">From</th>
+                        <th class="text rg-th">To</th>
+                    </thead>
+                    {% for entry in entries %}
+                    <tbody>
+                        <tr>
+                            <td class="text" data-title="Route">{{entry.route}}</td>
+                            <td class="text" data-title="Due">{{entry.duetime}}</td>
+                            <td class="text" data-title="From">{{entry.origin}}</td>
+                            <td class="text" data-title="To">{{entry.destination}}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="rg-source-and-credit">
+                <div class="rg-source">Last updated: {{ timestamp }}</div>
+                <div class="rg-credit"><span class="pre-colon">DATA</span>: <span class="post-colon"><a href="http://dublinked.ie">Dublinked</a></span></div>
+            </div>
+            {% elif errorcode == 1 %}
+            <h3>Sorry, no data for Bus stop {{ stop }} &#95;&#40;&#58;&#1079;&#12301;&ang;&#41;&#95;</h3>
+            {% else %}
+            {% endif %}
+
         </div>
-        {% else %}
-        <h1>Sorry, no data for Bus stop {{ stopid }} &#95;&#40;&#58;&#1079;&#12301;&ang;&#41;&#95;</h1>
-        {% endif %}
+        <br>
+        {% for error in errors %}
+        <h4>{{ error }}</h4>
+        {% endfor %}
     </div>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
-
 </html>
