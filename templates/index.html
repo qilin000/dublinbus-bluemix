@@ -4,37 +4,53 @@
 <head>
     <title>Display all routes for bus stop {{ stopid }}</title>
     <meta http-equiv="refresh" content="60">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/responsive_table.css') }}" />
 </head>
 
 <body>
     {% if errorcode == 0 %}
-    <h1>Display all routes for bus stop {{ stopid }}</h1>
-    <p>Now: {{ timestamp }}</p>
-
-    {% for entry in entries %}
-    <div class="bus">
-        <h3>#{{ entry.id }}</h3>
-        <p>Route: {{entry.route}}</p>
-        <p>Due in: {{entry.duetime}}</p>
-        <p>From: {{entry.origin}}</p>
-        <p>To: {{entry.destination}}</p>
-    </div>
-    {% endfor %}
-
-    <br>
-    <br>
-
-    <div class="req">
-        <h3>Total requests so far: {{ req_total}}</h3>
-        {% for req in requests %}
-        <p>Stop #{{ req.stop }}: {{ req.sum }}</p>
+    <div class="rg-container">
+        <div class="rg-header">
+            <div class="rg-hed">Display all routes for bus stop {{ stopid }}</div>
+            <div class="rg-subhed">Last updated: {{ timestamp }}</div>
+        </div>
+        {% for entry in entries %}
+        <div class="rg-content rg-table">
+            <table class="rg-table">
+                <thead>
+                    <th class="text rg-th">Route</th>
+                    <th class="text rg-th">Due</th>
+                    <th class="text rg-th">From</th>
+                    <th class="text rg-th">To</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text" data-title="Route">{{entry.route}}</td>
+                        <td class="text" data-title="Due">{{entry.duetime}}</td>
+                        <td class="text" data-title="From">{{entry.origin}}</td>
+                        <td class="text" data-title="To">{{entry.destination}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         {% endfor %}
-    </div>
-    {% else %}
-    <p>Sorry, no data for Bus stop {{ stopid }} &#95;&#40;&#58;&#1079;&#12301;&ang;&#41;&#95;</p>
-    {% endif %}
+        <div class="rg-source-and-credit">
+            <div class="rg-source"><span class="pre-colon">DATA</span>: <span class="post-colon"><a href="http://dublinked.ie">Dublinked</a></span>
+            </div>
+            <div class="rg-credit">Globe Staff</div>
+        </div>
 
-    <hr>Data by <a href="http://dublinked.ie">Dublinked</a>
+        <div class="req">
+            <h3>Total requests so far: {{ req_total}}</h3>
+            {% for req in requests %}
+            <p>Stop #{{ req.stop }}: {{ req.sum }}</p>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h1>Sorry, no data for Bus stop {{ stopid }} &#95;&#40;&#58;&#1079;&#12301;&ang;&#41;&#95;</h1>
+        {% endif %}
+    </div>
 </body>
 
 </html>
