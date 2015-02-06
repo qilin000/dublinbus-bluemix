@@ -13,6 +13,7 @@ def index():
     inputs = []
     bus_results = []
     stop = ""
+    address = ""
     timestamp = ""
     errorcode = 2
     
@@ -32,6 +33,9 @@ def index():
         errorcode = int(data["errorcode"])
         print errorcode
         
+        # get bus address
+        numberofresults = str(data["numberofresults"])
+        
         # get bus results
         if errorcode == 0:
             timestamp = data["timestamp"]
@@ -48,7 +52,7 @@ def index():
         # Print to console/log
         #print json.dumps(data, indent=2)
     
-    return render_template('index.html', errors=errors, entries=bus_results, stop=stop, timestamp=timestamp, errorcode=errorcode)
+    return render_template('index.html', errors=errors, entries=bus_results, stop=stop, timestamp=timestamp, errorcode=errorcode, numberofresults=numberofresults)
 
 
 port = os.getenv('VCAP_APP_PORT', '8902')

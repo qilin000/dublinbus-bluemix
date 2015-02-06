@@ -5,7 +5,7 @@
     <title>DUBLIN BUS APP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/responsive_table.css') }}" />
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/menus-nr-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
     <style>
         .container {
@@ -15,70 +15,88 @@
 </head>
 
 <body>
-    <div class="body">
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
         <div class="header">
-            <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed" id="search-bar">
-                    <a class="pure-menu-heading" href=""><span class="heading">Dublin Bus App</span></a>
-                    <ul id="search-form">
-                        <li>
-                            <div class="light">
-<form role="form" method='POST' action='/'>
-	<span><input type="text" pattern="[0-9]*" name="stopid" class="enjoy-input" placeholder="Search by stop number" style="max-width: 450px;" value="{{ stop }}"></span>
-</form>
-</div>
+            <h1>Real Time Information Results</h1>
+        </div>
+        <div id="menu">
+            <div class="pure-menu pure-menu-open">
+                <a class="pure-menu-heading" href="#">Dublin Bus</a>
+
+                <ul>
+                    <li class="pure-menu-selected"><a href="#">Search by <br>bus stop number</a>
+                    </li>
+                    <li><a href="#">Search by <br>bus route</a>
+                    </li>
+                    <li><a href="#">Search timetables</a>
+                        <li><a href="#">Weather</a>
                         </li>
-                    </ul>        
+                        <li><a href="#">News</a>
+                        </li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <div class="search-form">
+                <form role="form" method='POST' action='/'>
+                    <span><input type="text" pattern="[0-9]*" name="stopid" class="enjoy-input" placeholder="Search by stop number" style="max-width: 450px;" value="{{ stop }}"></span>
+                </form>
+            </div>
+            <div class="rg-container">
+                {% if errorcode == 0 %}
+                <div class="rg-header">
+                    <div class="rg-hed">Bus Stop #{{ stop }}</div>
+                    <div class="rg-subhed">Number of results: {{ numberofresults }}</div>
+                </div>
+
+                <div class="rg-content rg-table">
+                    <table class="rg-table">
+                        <thead>
+                            <th class="text rg-th">Route</th>
+                            <th class="text rg-th">Due</th>
+                            <th class="text rg-th">From</th>
+                            <th class="text rg-th">To</th>
+                        </thead>
+                        {% for entry in entries %}
+                        <tbody>
+                            <tr>
+                                <td class="text" data-title="Route">{{entry.route}}</td>
+                                <td class="text" data-title="Due">{{entry.duetime}}</td>
+                                <td class="text" data-title="From">{{entry.origin}}</td>
+                                <td class="text" data-title="To">{{entry.destination}}</td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="rg-source-and-credit">
+                    <div class="rg-source">Last updated: {{ timestamp }}</div>
+                    <div class="rg-credit"><span class="pre-colon">DATA</span>: <span class="post-colon"><a href="http://dublinked.ie">Dublinked</a></span>
+                    </div>
+                </div>
+                {% elif errorcode == 1 %}
+                <div class="nodata">
+                    <img src="../static/images/bus.gif" alt="Dublin Bus" height="60px">
+                    <h3>Sorry, no data for Bus stop #{{ stop }}</h3>
+                </div>
+                {% else %}
+                <!-- nothing here if there is no input -->
+                {% endif %}
+
             </div>
         </div>
 
-        <br>
-        <br>
-        <div class="rg-container">
-            {% if errorcode == 0 %}
-            <div class="rg-header">
-                <div class="rg-hed">Display all routes for bus stop #{{ stop }}</div>
-            </div>
-            
-            <div class="rg-content rg-table">
-                <table class="rg-table">
-                    <thead>
-                        <th class="text rg-th">Route</th>
-                        <th class="text rg-th">Due</th>
-                        <th class="text rg-th">From</th>
-                        <th class="text rg-th">To</th>
-                    </thead>
-                    {% for entry in entries %}
-                    <tbody>
-                        <tr>
-                            <td class="text" data-title="Route">{{entry.route}}</td>
-                            <td class="text" data-title="Due">{{entry.duetime}}</td>
-                            <td class="text" data-title="From">{{entry.origin}}</td>
-                            <td class="text" data-title="To">{{entry.destination}}</td>
-                        </tr>
-                    </tbody>
-                    {% endfor %}
-                </table>
-            </div>
-            <div class="rg-source-and-credit">
-                <div class="rg-source">Last updated: {{ timestamp }}</div>
-                <div class="rg-credit"><span class="pre-colon">DATA</span>: <span class="post-colon"><a href="http://dublinked.ie">Dublinked</a></span></div>
-            </div>
-            {% elif errorcode == 1 %}
-            <div class="nodata">
-                <img src="../static/images/bus.gif" alt="Dublin Bus" height="60px">
-                <h3>Sorry, no data for Bus stop #{{ stop }}</h3>
-            </div>
-            {% else %}
-            <!-- nothing here if there is no input -->
-            {% endif %}
-
-        </div>
         <br>
         {% for error in errors %}
         <h4>{{ error }}</h4>
         {% endfor %}
     </div>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="../static/js/ui.js"></script>
 </body>
+
 </html>
