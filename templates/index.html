@@ -23,7 +23,7 @@
                         <li>
                             <div class="light">
 <form role="form" method='POST' action='/'>
-	<span><input input type="text" name="stopid" class="enjoy-input" placeholder="Search by stop number" style="max-width: 450px;" value="{{ stop }}"></span>
+	<span><input type="text" pattern="[0-9]*" name="stopid" class="enjoy-input" placeholder="Search by stop number" style="max-width: 450px;" value="{{ stop }}"></span>
 </form>
 </div>
                         </li>
@@ -32,7 +32,7 @@
         </div>
 
         <br>
-        
+        <br>
         <div class="rg-container">
             {% if errorcode == 0 %}
             <div class="rg-header">
@@ -64,8 +64,12 @@
                 <div class="rg-credit"><span class="pre-colon">DATA</span>: <span class="post-colon"><a href="http://dublinked.ie">Dublinked</a></span></div>
             </div>
             {% elif errorcode == 1 %}
-            <h3>Sorry, no data for Bus stop {{ stop }} &#95;&#40;&#58;&#1079;&#12301;&ang;&#41;&#95;</h3>
+            <div class="nodata">
+                <img src="../static/images/bus.gif" alt="Dublin Bus" height="60px">
+                <h3>Sorry, no data for Bus stop #{{ stop }}</h3>
+            </div>
             {% else %}
+            <!-- nothing here if there is no input -->
             {% endif %}
 
         </div>

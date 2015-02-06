@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import os
-import requests
 import json
 
 from get import getData
@@ -19,14 +18,9 @@ def index():
     
     if request.method == "POST":
         # get url that the user has entered
-        try:
-            stop = request.form['stopid']
-            inputs.append(stop)
-        except:
-            errors.append(
-                "Unable to get bus information."
-            )
-            
+        stop = request.form['stopid']
+        inputs.append(stop)
+
     if inputs:
         #get stop
         stop = inputs.pop()
