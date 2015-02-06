@@ -9,13 +9,13 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    errors = []
     inputs = []
     bus_results = []
     stop = ""
     address = ""
     timestamp = ""
     errorcode = 2
+    numberofresults = 0
     
     if request.method == "POST":
         # get url that the user has entered
@@ -52,9 +52,10 @@ def index():
         # Print to console/log
         #print json.dumps(data, indent=2)
     
-    return render_template('index.html', errors=errors, entries=bus_results, stop=stop, timestamp=timestamp, errorcode=errorcode, numberofresults=numberofresults)
+    return render_template('index.html', entries=bus_results, stop=stop, timestamp=timestamp, errorcode=errorcode, numberofresults=numberofresults)
 
 
-port = os.getenv('VCAP_APP_PORT', '8902')
+port = os.getenv('VCAP_APP_PORT', '8911')
 if __name__ == '__main__':
+    app.debug = True
     app.run(host='0.0.0.0', port=int(port))

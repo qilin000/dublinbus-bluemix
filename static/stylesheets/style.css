@@ -1,54 +1,76 @@
-.search-form {
-
+.search-form form input {
+    margin: 0 auto;
 }
 
-/* sytle for input */
+.search-form {
+    text-align: center;
+}
+
 .enjoy-input {
-    margin-left:30px;
-    margin-top: 10px;
     display: inline-block;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    padding: 6px 40px;
+    padding: 10px 30px;
     border: 1px solid #b7b7b7;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
     font: normal medium/normal Arial, Helvetica, sans-serif;
     color: rgba(0, 142, 198, 1);
-    text-indent: 0px;
+    text-indent: 3px;
     -o-text-overflow: clip;
     text-overflow: clip;
-    background: url("../images/search.png"), rgba(252, 252, 252, 1);
+    background: url("http://enjoycss.com/bg-img/custom/5770-1romh8s.png"), rgba(252, 252, 252, 1);
     background-repeat: no-repeat;
-    background-position: 13px;
+    background-position: 8px center;
     -webkit-background-origin: padding-box;
     background-origin: padding-box;
     -webkit-background-clip: border-box;
     background-clip: border-box;
-    -webkit-background-size: 20px auto;
-    background-size: 20px auto;
+    -webkit-background-size: 20px 20px;
+    background-size: 20px 20px;
     -webkit-box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
     box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.66);
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 .enjoy-input:hover {
-    border: 2px solid #a3a3a3;
+    border: 1px solid #a3a3a3;
+    background: url("http://enjoycss.com/bg-img/custom/5770-1romh8s.png"), rgba(255, 255, 255, 1);
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    -webkit-background-origin: padding-box;
+    background-origin: padding-box;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-background-size: 20px 20px;
+    background-size: 20px 20px;
+    -webkit-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 .enjoy-input:focus {
     border: 1px solid #018dc4;
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    -webkit-background-origin: padding-box;
+    background-origin: padding-box;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-background-size: 20px 20px;
+    background-size: 20px 20px;
     -webkit-box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.2) inset;
     box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.2) inset;
+    -webkit-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-/* style for menu */
-body {
-    color: #777;
-}
-
-/*
-Add transition to containers so they can push in and out.
-*/
 #layout,
 #menu,
 .menu-link {
@@ -59,25 +81,22 @@ Add transition to containers so they can push in and out.
     transition: all 0.2s ease-out;
 }
 
-/*
-This is the parent `<div>` that contains the menu and the content area.
-*/
+
 #layout {
     position: relative;
     padding-left: 0;
 }
-    #layout.active {
-        position: relative;
-        left: 150px;
-    }
-        #layout.active #menu {
-            left: 150px;
-            width: 150px;
-        }
-
-        #layout.active .menu-link {
-            left: 150px;
-        }
+#layout.active {
+    position: relative;
+    left: 150px;
+}
+#layout.active #menu {
+    left: 150px;
+    width: 150px;
+}
+#layout.active .menu-link {
+    left: 150px;
+}
 .content {
     margin: 0 auto;
     padding: 0 2em;
@@ -85,181 +104,143 @@ This is the parent `<div>` that contains the menu and the content area.
     margin-bottom: 50px;
     line-height: 1.6em;
 }
-
 .header {
-     margin: 1em;
-     color: #333;
-     text-align: center;
-     padding: 2.5em 2em 0;
-     border-bottom: 1px solid #eee;
- }
-    .header h1 {
-        margin: 0.2em 0;
-        font-size: 3em;
-        font-weight: 300;
-    }
-     .header h2 {
-        font-weight: 300;
-        color: #ccc;
-        padding: 0;
-        margin-top: 0;
-    }
-
-/*
-The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
-appears on the left side of the page.
-*/
+    margin: 1em;
+    color: #333;
+    text-align: center;
+    padding: 2.5em 2em 0;
+    border-bottom: 1px solid #eee;
+}
+.header h1 {
+    margin: 0.2em 0;
+    font-size: 3em;
+    font-weight: 300;
+}
+.header h2 {
+    font-weight: 300;
+    color: #ccc;
+    padding: 0;
+    margin-top: 0;
+}
 
 #menu {
-    margin-left: -150px; /* "#menu" width */
+    margin-left: -150px;
+    /* "#menu" width */
     width: 150px;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    z-index: 1000; /* so the menu or its navicon stays above all content */
+    z-index: 1000;
+    /* so the menu or its navicon stays above all content */
     background: #191818;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
-    /*
-    All anchors inside the menu should be styled like this.
-    */
-    #menu a {
-        color: #999;
-        border: none;
-        padding: 0.6em 0 0.6em 0.6em;
-    }
 
-    /*
-    Remove all background/borders, since we are applying them to #menu.
-    */
-     #menu .pure-menu,
-     #menu .pure-menu ul {
-        border: none;
-        background: transparent;
-    }
 
-    /*
-    Add that light border to separate items into groups.
-    */
-    #menu .pure-menu ul,
-    #menu .pure-menu .menu-item-divided {
-        border-top: 1px solid #333;
-    }
-        /*
-        Change color of the anchor links on hover/focus.
-        */
-        #menu .pure-menu li a:hover,
-        #menu .pure-menu li a:focus {
-            background: #333;
-        }
+#menu a {
+    color: #999;
+    border: none;
+    padding: 0.6em 0 0.6em 0.6em;
+}
 
-    /*
-    This styles the selected menu item `<li>`.
-    */
-    #menu .pure-menu-selected,
-    #menu .pure-menu-heading {
-        background: black;
-    }
-        /*
-        This styles a link within a selected menu item `<li>`.
-        */
-        #menu .pure-menu-selected a {
-            color: #fff;
-        }
+#menu .pure-menu,
+#menu .pure-menu ul {
+    border: none;
+    background: transparent;
+}
 
-    /*
-    This styles the menu heading.
-    */
-    #menu .pure-menu-heading {
-        font-size: 110%;
-        color: #fff;
-        margin: 0;
-    }
 
-/* -- Dynamic Button For Responsive Menu -------------------------------------*/
+#menu .pure-menu ul,
+#menu .pure-menu .menu-item-divided {
+    border-top: 1px solid #333;
+}
 
-/*
-The button to open/close the Menu is custom-made and not part of Pure. Here's
-how it works:
-*/
 
-/*
-`.menu-link` represents the responsive menu toggle that shows/hides on
-small screens.
-*/
+#menu .pure-menu li a:hover,
+#menu .pure-menu li a:focus {
+    background: #333;
+}
+
+#menu .pure-menu-selected,
+#menu .pure-menu-heading {
+    background: black;
+}
+
+#menu .pure-menu-selected a {
+    color: #fff;
+}
+
+
+#menu .pure-menu-heading {
+    font-size: 110%;
+    color: #fff;
+    margin: 0;
+}
+
+
 .menu-link {
     position: fixed;
-    display: block; /* show this only on small screens */
+    display: block;
+    /* show this only on small screens */
     top: 0;
-    left: 0; /* "#menu width" */
+    left: 0;
+    /* "#menu width" */
     background: #000;
-    background: rgba(0,0,0,0.7);
-    font-size: 10px; /* change this value to increase/decrease button size */
+    background: rgba(0, 0, 0, 0.7);
+    font-size: 10px;
+    /* change this value to increase/decrease button size */
     z-index: 10;
     width: 2em;
     height: auto;
     padding: 2.1em 1.6em;
 }
-
-    .menu-link:hover,
-    .menu-link:focus {
-        background: #000;
-    }
-
-    .menu-link span {
-        position: relative;
-        display: block;
-    }
-
-    .menu-link span,
-    .menu-link span:before,
-    .menu-link span:after {
-        background-color: #fff;
-        width: 100%;
-        height: 0.2em;
-    }
-
-        .menu-link span:before,
-        .menu-link span:after {
-            position: absolute;
-            margin-top: -0.6em;
-            content: " ";
-        }
-
-        .menu-link span:after {
-            margin-top: 0.6em;
-        }
+.menu-link:hover,
+.menu-link:focus {
+    background: #000;
+}
+.menu-link span {
+    position: relative;
+    display: block;
+}
+.menu-link span,
+.menu-link span:before,
+.menu-link span:after {
+    background-color: #fff;
+    width: 100%;
+    height: 0.2em;
+}
+.menu-link span:before,
+.menu-link span:after {
+    position: absolute;
+    margin-top: -0.6em;
+    content: " ";
+}
+.menu-link span:after {
+    margin-top: 0.6em;
+}
 
 
-/* -- Responsive Styles (Media Queries) ------------------------------------- */
-
-/*
-Hides the menu at `48em`, but modify this based on your app's needs.
-*/
 @media (min-width: 48em) {
-
     .header,
     .content {
         padding-left: 2em;
         padding-right: 2em;
     }
-
     #layout {
-        padding-left: 150px; /* left col width "#menu" */
+        padding-left: 150px;
+        /* left col width "#menu" */
         left: 0;
     }
     #menu {
         left: 150px;
     }
-
     .menu-link {
         position: fixed;
         left: 150px;
         display: none;
     }
-
     #layout.active .menu-link {
         left: 150px;
     }

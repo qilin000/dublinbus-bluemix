@@ -1,0 +1,124 @@
+^CLins-MacBook-Pro:bluemix linqi$ cf push dublin-bus
+Updating app dublin-bus in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+Uploading dublin-bus...
+Uploading app files from: /Users/linqi/Desktop/bluemix
+Uploading 58.7K, 26 files
+OK
+
+Stopping app dublin-bus in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+Starting app dublin-bus in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+-----> Downloaded app buildpack cache (31M)
+Cloning into '/tmp/buildpacks/cf-buildpack-python'...
+Submodule 'compile-extensions' (https://github.com/cf-buildpacks/compile-extensions.git) registered for path 'compile-extensions'
+Cloning into 'compile-extensions'...
+Submodule path 'compile-extensions': checked out '1b84b6955b115c84a552eaed2a28b1ae5dfb0456'
+-------> Buildpack version 1.1.2
+-----> Uploading droplet (31M)
+
+0 of 1 instances running, 1 starting
+0 of 1 instances running, 1 starting
+1 of 1 instances running
+
+App started
+
+Showing health and status for app dublin-bus in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+requested state: started
+instances: 1/1
+usage: 64M x 1 instances
+urls: dublin-bus.mybluemix.net
+
+     state     since                    cpu    memory         disk   
+#0   running   2015-02-06 04:11:41 PM   0.0%   37.8M of 64M   116.7M of 1G   
+Lins-MacBook-Pro:bluemix linqi$ 
+Lins-MacBook-Pro:bluemix linqi$ cf push dublin-bus
+Updating app dublin-bus in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+Uploading dublin-bus...
+Uploading app files from: /Users/linqi/Desktop/bluemix
+Uploading 58.6K, 26 files
+OK
+
+Stopping app dublin-bus in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+Starting app dublin-bus in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+0 of 1 instances running, 1 starting
+0 of 1 instances running, 1 starting
+1 of 1 instances running
+
+App started
+
+Showing health and status for app dublin-bus in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+OK
+
+requested state: started
+instances: 1/1
+usage: 64M x 1 instances
+urls: dublin-bus.mybluemix.net
+
+     state     since                    cpu    memory         disk   
+#0   running   2015-02-06 04:13:29 PM   0.0%   37.7M of 64M   116.7M of 1G   
+Lins-MacBook-Pro:bluemix linqi$ cf logs dublin-bus --recent
+Connected, dumping recent logs for app dublin-bus in org LEIPANNN@ie.ibm.com / space dev as LEIPANNN@ie.ibm.com...
+
+2015-02-06T16:05:01.34+0000 [API]     OUT Updated app with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f ({"name"=>"dublin-bus"})
+2015-02-06T16:05:19.22+0000 [API]     OUT Updated app with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f ({"state"=>"STOPPED"})
+2015-02-06T16:05:19.25+0000 [App/0]   OUT Dropped a message because of read error: read unix /var/vcap/data/warden/depot/18dgm4thc3i/jobs/12678/stdout.sock: use of closed network connection
+2015-02-06T16:05:19.25+0000 [App/0]   ERR Dropped a message because of read error: read unix /var/vcap/data/warden/depot/18dgm4thc3i/jobs/12678/stderr.sock: use of closed network connection
+2015-02-06T16:05:20.43+0000 [DEA]     OUT Stopping app instance (index 0) with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:05:20.44+0000 [DEA]     OUT Stopped app instance (index 0) with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:05:22.48+0000 [DEA]     OUT Got staging request for app with id ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:05:45.68+0000 [API]     OUT Updated app with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f ({"state"=>"STARTED"})
+2015-02-06T16:05:46.13+0000 [STG]     OUT -----> Downloaded app package (432K)
+2015-02-06T16:05:47.70+0000 [STG]     OUT -----> Downloaded app buildpack cache (31M)
+2015-02-06T16:05:47.89+0000 [STG]     ERR Cloning into '/tmp/buildpacks/cf-buildpack-python'...
+2015-02-06T16:05:51.10+0000 [STG]     OUT Submodule 'compile-extensions' (https://github.com/cf-buildpacks/compile-extensions.git) registered for path 'compile-extensions'
+2015-02-06T16:05:51.16+0000 [STG]     ERR Cloning into 'compile-extensions'...
+2015-02-06T16:05:51.94+0000 [STG]     OUT -------> Buildpack version 1.1.2
+2015-02-06T16:05:55.57+0000 [STG]     OUT -----> Installing dependencies with pip
+2015-02-06T16:06:10.29+0000 [STG]     OUT -----> Uploading droplet (31M)
+2015-02-06T16:06:22.89+0000 [DEA]     OUT Starting app instance (index 0) with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:07:06.14+0000 [App/0]   ERR 75.126.23.243 - - [06/Feb/2015 16:07:06] "GET / HTTP/1.1" 500 -
+2015-02-06T16:07:06.15+0000 [RTR]     OUT dublin-bus.mybluemix.net - [06/02/2015:16:07:05 +0000] "GET / HTTP/1.1" 500 291 "http://dublin-bus.mybluemix.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36" 75.126.70.46:52250 x_forwarded_for:"-" vcap_request_id:213d7821-b01c-40bc-65f0-997e01b8118a response_time:0.775536869 app_id:ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:07:10.04+0000 [RTR]     OUT dublin-bus.mybluemix.net - [06/02/2015:16:07:10 +0000] "GET / HTTP/1.1" 500 291 "http://dublin-bus.mybluemix.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36" 75.126.70.46:13212 x_forwarded_for:"-" vcap_request_id:f106af7e-8082-4490-56e1-319f836e83a9 response_time:0.037349279 app_id:ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:07:10.07+0000 [App/0]   ERR 75.126.52.20 - - [06/Feb/2015 16:07:10] "GET / HTTP/1.1" 500 -
+2015-02-06T16:07:12.17+0000 [RTR]     OUT dublin-bus.mybluemix.net - [06/02/2015:16:07:12 +0000] "GET / HTTP/1.1" 500 291 "http://dublin-bus.mybluemix.net/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36" 75.126.70.46:13274 x_forwarded_for:"-" vcap_request_id:3a6db92c-218c-4047-6e74-237816d2fc54 response_time:0.023629582 app_id:ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:07:12.17+0000 [App/0]   ERR 75.126.37.74 - - [06/Feb/2015 16:07:12] "GET / HTTP/1.1" 500 -
+2015-02-06T16:07:40.16+0000 [RTR]     OUT dublin-bus.mybluemix.net - [06/02/2015:16:07:40 +0000] "GET / HTTP/1.1" 500 291 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36" 75.126.70.43:21239 x_forwarded_for:"-" vcap_request_id:f5cb8fef-632d-453c-76d7-13545b20b5c3 response_time:0.036815286 app_id:ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:07:40.16+0000 [App/0]   ERR 75.126.37.75 - - [06/Feb/2015 16:07:40] "GET / HTTP/1.1" 500 -
+2015-02-06T16:08:07.92+0000 [RTR]     OUT dublin-bus.mybluemix.net - [06/02/2015:16:08:07 +0000] "GET / HTTP/1.1" 500 291 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36" 75.126.70.42:57392 x_forwarded_for:"-" vcap_request_id:bd7ade42-83ae-4bb6-7479-5ed0e57d4a6d response_time:0.062900742 app_id:ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:08:07.95+0000 [App/0]   ERR 75.126.52.20 - - [06/Feb/2015 16:08:07] "GET / HTTP/1.1" 500 -
+2015-02-06T16:10:29.13+0000 [API]     OUT Updated app with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f ({"state"=>"STOPPED"})
+2015-02-06T16:10:29.19+0000 [App/0]   ERR Dropped a message because of read error: read unix /var/vcap/data/warden/depot/18dgf483659/jobs/6934/stderr.sock: use of closed network connection
+2015-02-06T16:10:30.41+0000 [DEA]     OUT Stopping app instance (index 0) with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:10:30.41+0000 [DEA]     OUT Stopped app instance (index 0) with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:10:49.27+0000 [API]     OUT Updated app with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f ({"state"=>"STARTED"})
+2015-02-06T16:10:50.91+0000 [STG]     ERR Cloning into '/tmp/buildpacks/cf-buildpack-python'...
+2015-02-06T16:10:53.61+0000 [STG]     OUT Submodule 'compile-extensions' (https://github.com/cf-buildpacks/compile-extensions.git) registered for path 'compile-extensions'
+2015-02-06T16:10:53.66+0000 [STG]     ERR Cloning into 'compile-extensions'...
+2015-02-06T16:10:54.28+0000 [STG]     OUT Submodule path 'compile-extensions': checked out '1b84b6955b115c84a552eaed2a28b1ae5dfb0456'
+2015-02-06T16:10:54.47+0000 [STG]     OUT -------> Buildpack version 1.1.2
+2015-02-06T16:11:10.34+0000 [STG]     OUT -----> Uploading droplet (31M)
+2015-02-06T16:11:22.02+0000 [DEA]     OUT Starting app instance (index 0) with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:11:41.09+0000 [App/0]   ERR  * Running on http://0.0.0.0:62918/ (Press CTRL+C to quit)
+2015-02-06T16:11:53.14+0000 [RTR]     OUT dublin-bus.mybluemix.net - [06/02/2015:16:11:53 +0000] "GET / HTTP/1.1" 500 291 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36" 75.126.70.46:11937 x_forwarded_for:"-" vcap_request_id:6d8186d3-7f62-4be3-59cd-29bb05326f50 response_time:0.139861715 app_id:ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:11:53.18+0000 [App/0]   ERR 75.126.52.20 - - [06/Feb/2015 16:11:53] "GET / HTTP/1.1" 500 -
+2015-02-06T16:12:17.54+0000 [App/0]   OUT 
+2015-02-06T16:12:18.73+0000 [DEA]     OUT Stopped app instance (index 0) with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:12:20.72+0000 [DEA]     OUT Got staging request for app with id ddfc338e-7e69-4fa0-9dda-161af5b31f8f
+2015-02-06T16:12:37.34+0000 [API]     OUT Updated app with guid ddfc338e-7e69-4fa0-9dda-161af5b31f8f ({"state"=>"STARTED"})
+2015-02-06T16:12:41.40+0000 [STG]     OUT Submodule 'compile-extensions' (https://github.com/cf-buildpacks/compile-extensions.git) registered for path 'compile-extensions'
+2015-02-06T16:12:41.45+0000 [STG]     ERR Cloning into 'compile-extensions'...
+2015-02-06T16:12:42.17+0000 [STG]     OUT -------> Buildpack version 1.1.2
+2015-02-06T16:12:57.74+0000 [STG]     OUT -----> Uploading droplet (31M)
+2015-02-06T16:13:46.32+0000 [App/0]   ERR 75.126.37.74 - - [06/Feb/2015 16:13:46] "GET / HTTP/1.1" 500 -
