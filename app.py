@@ -54,8 +54,6 @@ def index():
     
     return render_template('index.html', entries=bus_results, stop=stop, timestamp=timestamp, errorcode=errorcode, numberofresults=numberofresults)
 
-
-port = os.getenv('VCAP_APP_PORT', '8911')
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0', port=int(port))
+    app.run()
