@@ -3,15 +3,20 @@
 
 <head>
     <title>DUBLIN BUS APP</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Real time dublin bus information">
+    <meta name="keywords" content="Dublin bus, RTPI">
+    <meta name="author" content="Lin Qi">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/responsive_table.css') }}" />
+
+    <!-- icon-->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}" />
+    
+    <!-- CSS styles -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
-    <style>
-        .container {
-            max-width: 1000px;
-        }
-    </style>
+
+
 </head>
 
 <body>
@@ -21,12 +26,9 @@
             <!-- Hamburger icon -->
             <span></span>
         </a>
-        <div class="header">
-            <h1>Real Time Information Results</h1>
-        </div>
         <div id="menu">
             <div class="pure-menu pure-menu-open">
-                <a class="pure-menu-heading" href="#">Dublin Bus</a>
+                <a class="pure-menu-heading" href="#"><img src="../static/images/dublin_bus_black_and_white.png" alt="dublin bus logo" width="120"></a>
 
                 <ul>
                     <li class="pure-menu-selected"><a href="">Search by <br>bus stop number</a>
@@ -41,55 +43,61 @@
                 </ul>
             </div>
         </div>
-        <div class="content">
-            <div class="search-form">
-                <form role="form" method='POST' action='/'>
-                    <span><input type="text" pattern="[0-9]*" name="stopid" class="enjoy-input" placeholder="Search by stop number" style="max-width: 450px;" value="{{ stop }}"></span>
-                </form>
+        <div class="container">
+            <div class="header">
+                <h1>Real Time Bus Information</h1>
             </div>
-            <div class="rg-container">
-                {% if errorcode == 0 %}
-                <div class="rg-header">
-                    <div class="rg-hed">Bus Stop #{{ stop }}</div>
-                    <div class="rg-subhed">Number of results: {{ numberofresults }}</div>
+            <div class="content">
+                <div class="search-form">
+                    <form role="form" method='POST' action='/'>
+                        <span><input type="text" pattern="[0-9]*" name="stopid" class="enjoy-input" placeholder="Search by stop number" style="max-width: 450px;" value="{{ stop }}"></span>
+                    </form>
                 </div>
-
-                <div class="rg-content rg-table">
-                    <table class="rg-table">
-                        <thead>
-                            <th class="text rg-th">Route</th>
-                            <th class="text rg-th">Due</th>
-                            <th class="text rg-th">From</th>
-                            <th class="text rg-th">To</th>
-                        </thead>
-                        {% for entry in entries %}
-                        <tbody>
-                            <tr>
-                                <td class="text" data-title="Route">{{entry.route}}</td>
-                                <td class="text" data-title="Due">{{entry.duetime}}</td>
-                                <td class="text" data-title="From">{{entry.origin}}</td>
-                                <td class="text" data-title="To">{{entry.destination}}</td>
-                            </tr>
-                        </tbody>
-                        {% endfor %}
-                    </table>
-                </div>
-                <div class="rg-source-and-credit">
-                    <div class="rg-source">Last updated: {{ timestamp }}</div>
-                    <div class="rg-credit"><span class="pre-colon">DATA</span>: <span class="post-colon"><a href="http://dublinked.ie">Dublinked</a></span>
+                <div class="rg-container">
+                    {% if errorcode == 0 %}
+                    <div class="rg-header">
+                        <div class="rg-hed">Bus Stop #{{ stop }}</div>
+                        <div class="rg-subhed">Number of results: {{ numberofresults }}</div>
                     </div>
-                </div>
-                {% elif errorcode == 1 %}
-                <div class="nodata">
-                    <img src="../static/images/bus.gif" alt="Dublin Bus" height="60px">
-                    <h3>Sorry, no data for Bus stop #{{ stop }}</h3>
-                </div>
-                {% else %}
-                <!-- nothing here if there is no input -->
-                {% endif %}
 
+                    <div class="rg-content rg-table">
+                        <table class="rg-table">
+                            <thead>
+                                <th class="text rg-th">Route</th>
+                                <th class="text rg-th">Due</th>
+                                <th class="text rg-th">From</th>
+                                <th class="text rg-th">To</th>
+                            </thead>
+                            {% for entry in entries %}
+                            <tbody>
+                                <tr>
+                                    <td class="text" data-title="Route">{{entry.route}}</td>
+                                    <td class="text" data-title="Due">{{entry.duetime}}</td>
+                                    <td class="text" data-title="From">{{entry.origin}}</td>
+                                    <td class="text" data-title="To">{{entry.destination}}</td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <div class="rg-source-and-credit">
+                        <div class="rg-source">Last updated: {{ timestamp }}</div>
+                        <div class="rg-credit"><span class="pre-colon">DATA</span>: <span class="post-colon"><a href="http://dublinked.com/datastore/datasets/dataset-300.php" target="_blank">Dublinked</a></span>
+                        </div>
+                    </div>
+                    {% elif errorcode == 1 %}
+                    <div class="nodata">
+                        <img src="../static/images/bus.gif" alt="Dublin Bus" height="60px">
+                        <h3>Sorry, no data for Bus stop #{{ stop }}</h3>
+                    </div>
+                    {% else %}
+                    <!-- nothing here if there is no input -->
+                    {% endif %}
+
+                </div>
             </div>
         </div>
+
     </div>
     <script src="../static/js/ui.js"></script>
 </body>
