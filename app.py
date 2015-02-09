@@ -4,7 +4,6 @@ import json
 
 from get import getData
 
-
 app = Flask(__name__)
 
 
@@ -52,21 +51,25 @@ def index():
         if errorcode == 0:
             timestamp = data["timestamp"]
             for i,j in enumerate(data["results"], start=1):
-                bus_entry = {}
-                bus_entry["id"] = str(i)
-                bus_entry["route"] = str(j["route"])
-                bus_entry["duetime"] = str(j["duetime"])
-                bus_entry["origin"] = str(j["origin"])
-                bus_entry["destination"] = str(j["destination"])
-                bus_results.append(bus_entry)
+                bus_result = {}
+                bus_result["id"] = str(i)
+                bus_result["route"] = str(j["route"])
+                bus_result["duetime"] = str(j["duetime"])
+                bus_result["origin"] = str(j["origin"])
+                bus_result["destination"] = str(j["destination"])
+                bus_results.append(bus_result)
         
         #print "====================BUS INFORMATION==================="
         # Print to console/log
         #print json.dumps(data, indent=2)
     
-    return render_template('index.html', entries=bus_results, stop=stop, timestamp=timestamp, errorcode=errorcode, numberofresults=numberofresults)
+    return render_template('index.html', results=bus_results, stop=stop, timestamp=timestamp, errorcode=errorcode, numberofresults=numberofresults)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 port = os.getenv('VCAP_APP_PORT', '8901')
 
 if __name__ == "__main__":  
-    app.run(host='0.0.0.0', port=int(port))
+    app.run(host='0.0.0.0', debug=True, port=int(port))

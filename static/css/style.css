@@ -7,7 +7,46 @@
 .container {
     max-width: 1000px;
 }
-
+.nodata {
+    text-align: center;
+}
+.circular {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    background: url(../images/linkedin.png) no-repeat;
+    background-size: 100%;
+}
+.circular img {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.about {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0em auto;
+    padding: 0 2em;
+    max-width: 1000px;
+    margin-bottom: 50px;
+    line-height: 2em;
+}
+a:link {
+    color: #3399FF;
+    text-decoration: none
+}
+a:visited {
+    color: #3399FF;
+    text-decoration: none
+}
+a:hover {
+    color: #FF3300;
+    text-decoration: none
+}
+a:active {
+    color: #FF3300;
+    text-decoration: none
+}
 /*Author: XB Software */
 
 /*link: http://enjoycss.com/ */
@@ -29,7 +68,7 @@
     text-indent: 3px;
     -o-text-overflow: clip;
     text-overflow: clip;
-    background: url("http://enjoycss.com/bg-img/custom/5770-1romh8s.png"), rgba(252, 252, 252, 1);
+    background: url("../images/search.svg"), rgba(252, 252, 252, 1);
     background-repeat: no-repeat;
     background-position: 8px center;
     -webkit-background-origin: padding-box;
@@ -48,7 +87,7 @@
 }
 .enjoy-input:hover {
     border: 1px solid #a3a3a3;
-    background: url("http://enjoycss.com/bg-img/custom/5770-1romh8s.png"), rgba(255, 255, 255, 1);
+    background: url("../images/search.svg"), rgba(255, 255, 255, 1);
     background-repeat: no-repeat;
     background-position: 8px center;
     -webkit-background-origin: padding-box;
@@ -111,7 +150,7 @@
 }
 .content {
     margin: 0 auto;
-    padding: 0 2em;
+    padding: 2em 2em;
     max-width: 800px;
     margin-bottom: 50px;
     line-height: 1.6em;
@@ -149,6 +188,7 @@
     -webkit-overflow-scrolling: touch;
 }
 #menu a {
+    font-family: Arial, Helvetica, sans-serif;
     color: #999;
     border: none;
     padding: 0.6em 0 0.6em 0.6em;
@@ -239,6 +279,9 @@
     }
     #layout.active .menu-link {
         left: 150px;
+    }
+    .about {
+        padding: 2em 6em;
     }
 }
 /*Author: Russell Goldenberg*/

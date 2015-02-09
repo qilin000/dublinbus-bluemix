@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DUBLIN BUS APP - About</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Real time dublin bus information">
+    <meta name="keywords" content="Dublin bus, RTPI">
+    <meta name="author" content="Lin Qi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- icon-->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}" />
+    
+    <!-- CSS styles -->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+
+
+</head>
+
+<body>
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+        <div id="menu">
+            <div class="pure-menu pure-menu-open">
+                <a class="pure-menu-heading"><img src="../static/images/dublin_bus_black_and_white.png" alt="dublin bus logo" width="120"></a>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Search by <br>bus stop number</a>
+                    </li>
+                    <li pure-menu-disabled><a>Search by <br>bus route</a>
+                    </li>
+                    <li pure-menu-disabled><a>Search timetables</a></li>
+                    <li pure-menu-disabled><a>Weather</a></li>
+                    <li class="pure-menu-selected"><a href="{{ url_for('about') }}">About</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header">
+                <h1>About</h1>
+            </div>
+            <div class="about">
+                <div class="author">
+                <div class="circular"><img src="{{ url_for('static', filename='images/linkedin.png') }}" alt="" /></div>
+                <h4>Author: Lin Qi</h4>
+                <p><a href="http://ie.linkedin.com/in/qilin1989/en">Linkedin</a></p>
+                <p>I designed, coded and tested this app during weekends. <br>I learned almost everything about web development by building this app and I'm quite happy about the result.</p>
+                    
+                <h4>Dublin Bus App provides the following services:</h4>
+                <table class="pure-table">
+                    <tbody>
+                        <tr>
+                            <td>√</td>
+                            <td>display real time information of all routes for a given bus stop number;</td>
+                        </tr>
+                        <tr>
+                            <td>-</td>
+                            <td>search by bus route</td>
+                        </tr>
+                        <tr>
+                            <td>-</td>
+                            <td>search timetables</td>
+                        </tr>
+                        <tr>
+                            <td>-</td>
+                            <td>display realt time information of local weather</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>This App employs the following frameworks/services:</h4>
+                <table class="pure-table">
+                    <tbody>
+                        <tr class="pure-table-odd">
+                            <td>Web Framework</td>
+                            <td><a href="http://flask.pocoo.org/">Flask 0.10.1</a></td>
+                        </tr>
+                        <tr>
+                            <td>CSS Framework</td>
+                            <td><a href="http://purecss.io/">Pure</a></td>
+                        </tr>
+                        <tr class="pure-table-odd">
+                            <td>RESTful API</td>
+                            <td><a href="http://dublinked.com/datastore/datasets/dataset-300.php">RTPI</a></td>
+                        </tr>
+                        <tr>
+                            <td>Cloud Service</td>
+                            <td><a href="http://www.ibm.com/software/bluemix">IBM Bluemix</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+
+    </div>
+    <script src="../static/js/ui.js"></script>
+</body>
+
+</html>
