@@ -2,20 +2,12 @@ from flask import Flask, render_template, request
 import os
 import json
 
-from get import getData
+from get import getData, getDb
 
 app = Flask(__name__)
 
-
-@app.errorhandler(404)
-def not_found_error(error):
-    return render_template('404.html'), 404
-
-
-@app.errorhandler(500)
-def internal_error(error):
-    db.session.rollback()
-    return render_template('500.html'), 500
+# get a collection called "bus"
+bus = getDb()
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -27,6 +19,9 @@ def index():
     timestamp = ""
     errorcode = 2
     numberofresults = 0
+    bus_doc = {}
+    totalrequests = bus.count()
+    
     
     if request.method == "POST":
         # get url that the user has entered
@@ -37,8 +32,17 @@ def index():
         #get stop
         stop = inputs.pop()
         
-        # Type: dict
+        # Type: json
         data = getData(stop)
+        
+        bus_doc["stopid"] = str(stop)
+        bus_doc["timestamp"] = data["timestamp"]
+        
+        print bus_doc
+        
+        bus.save(bus_doc)
+        
+        totalrequests = bus.count()
         
         # get error code
         errorcode = int(data["errorcode"])
@@ -63,7 +67,7 @@ def index():
         # Print to console/log
         #print json.dumps(data, indent=2)
     
-    return render_template('index.html', results=bus_results, stop=stop, timestamp=timestamp, errorcode=errorcode, numberofresults=numberofresults)
+    return render_template('index.html', results=bus_results, stop=stop, timestamp=timestamp, errorcode=errorcode, numberofresults=numberofresults, totalrequests=totalrequests)
 
 @app.route('/about')
 def about():

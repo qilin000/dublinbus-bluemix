@@ -28,14 +28,10 @@
         </a>
         <div id="menu">
             <div class="pure-menu pure-menu-open">
-                <a class="pure-menu-heading"><img src="../static/images/dublin_bus_black_and_white.png" alt="dublin bus logo" width="120"></a>
+                <a class="pure-menu-heading"><img src="../static/images/dublin_bus_black_and_white.png" alt="dublin bus logo" width="100"></a>
                 <ul>
                     <li class="pure-menu-selected"><a href="">Search by <br>bus stop number</a>
                     </li>
-                    <li pure-menu-disabled><a>Search by <br>bus route</a>
-                    </li>
-                    <li pure-menu-disabled><a>Search timetables</a></li>
-                    <li pure-menu-disabled><a>Weather</a></li>
                     <li><a href="{{ url_for('about') }}">About</a></li>
                 </ul>
             </div>
@@ -43,6 +39,7 @@
         <div class="container">
             <div class="header">
                 <h1>Real Time Bus Information</h1>
+                <h2>total requests so far: {{ totalrequests }}</h2>
             </div>
             <div class="content">
                 <div class="search-form">
@@ -83,12 +80,15 @@
                         </div>
                     </div>
                     {% elif errorcode == 1 %}
-                    <div class="nodata">
-                        <img src="../static/images/bus.gif" alt="Dublin Bus" height="60px">
+                    <div class="bus">
+                        <a href="http://qkirin.deviantart.com/art/A-Dublin-Bus-Gif-507115954" target="_blank"><img src="../static/images/bus.gif" alt="Dublin Bus" height="100px"></a>
                         <h3>Sorry, no data for Bus stop #{{ stop }}</h3>
                     </div>
                     {% else %}
                     <!-- nothing here if there is no input -->
+                    <div class="bus">
+                        <a href="http://qkirin.deviantart.com/art/A-Dublin-Bus-Gif-507115954" target="_blank"><img src="../static/images/bus.gif" alt="Dublin Bus" height="100px"></a>
+                    </div>
                     {% endif %}
 
                 </div>

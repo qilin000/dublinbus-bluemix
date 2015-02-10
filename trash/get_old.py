@@ -5,8 +5,8 @@ import os
 import pymongo
 
 # Replace user and password with API key
-user = "linqi"
-password = "1710qi2014"
+user = ""
+password = ""
 
 def getData(stopid):
     # realtime bus information

@@ -32,10 +32,6 @@
                 <ul>
                     <li><a href="{{ url_for('index') }}">Search by <br>bus stop number</a>
                     </li>
-                    <li pure-menu-disabled><a>Search by <br>bus route</a>
-                    </li>
-                    <li pure-menu-disabled><a>Search timetables</a></li>
-                    <li pure-menu-disabled><a>Weather</a></li>
                     <li class="pure-menu-selected"><a href="{{ url_for('about') }}">About</a></li>
                 </ul>
             </div>
@@ -46,11 +42,11 @@
             </div>
             <div class="about">
                 <div class="author">
-                <div class="circular"><img src="{{ url_for('static', filename='images/linkedin.png') }}" alt="" /></div>
+                <div class="circular"><img src="{{ url_for('static', filename='images/linkedin.png') }}" alt="Lin Qi" /></div>
                 <h4>Author: Lin Qi</h4>
                 <p><a href="http://ie.linkedin.com/in/qilin1989/en">Linkedin</a></p>
                 <p>I designed, coded and tested this app during weekends. <br>I learned almost everything about web development by building this app and I'm quite happy about the result.</p>
-                    
+                <p><a href="http://dublinbus2014.mybluemix.net/" target="_blank">Check the old version of this App</a></p>
                 <h4>Dublin Bus App provides the following services:</h4>
                 <table class="pure-table">
                     <tbody>
@@ -77,19 +73,19 @@
                     <tbody>
                         <tr class="pure-table-odd">
                             <td>Web Framework</td>
-                            <td><a href="http://flask.pocoo.org/">Flask 0.10.1</a></td>
+                            <td><a href="http://flask.pocoo.org/" target="_blank">Flask 0.10.1</a></td>
                         </tr>
                         <tr>
                             <td>CSS Framework</td>
-                            <td><a href="http://purecss.io/">Pure</a></td>
+                            <td><a href="http://purecss.io/" target="_blank">Pure</a></td>
                         </tr>
                         <tr class="pure-table-odd">
                             <td>RESTful API</td>
-                            <td><a href="http://dublinked.com/datastore/datasets/dataset-300.php">RTPI</a></td>
+                            <td><a href="http://dublinked.com/datastore/datasets/dataset-300.php" target="_blank">RTPI</a></td>
                         </tr>
                         <tr>
                             <td>Cloud Service</td>
-                            <td><a href="http://www.ibm.com/software/bluemix">IBM Bluemix</a></td>
+                            <td><a href="http://www.ibm.com/software/bluemix" target="_blank">IBM Bluemix</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -97,6 +93,7 @@
             </div>
         </div>
 
+    </div>
     </div>
     <script src="../static/js/ui.js"></script>
 </body>
