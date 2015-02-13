@@ -3,6 +3,7 @@ import os
 import json
 
 from get import getData, getDb
+from webcrawler import crawl
 
 app = Flask(__name__)
 
@@ -18,7 +19,7 @@ def index():
     address = ""
     timestamp = ""
     errorcode = 2
-    numberofresults = 0
+    stopAddress = ""
     bus_doc = {}
     totalrequests = bus.count()
     
@@ -35,8 +36,14 @@ def index():
         # Type: json
         data = getData(stop)
         
+        # get error code
+        errorcode = int(data["errorcode"])
+        print errorcode
+        
         bus_doc["stopid"] = str(stop)
         bus_doc["timestamp"] = data["timestamp"]
+        bus_doc["clientIP"] = request.remote_addr
+        bus_doc["errorcode"] = errorcode
         
         print bus_doc
         
@@ -44,15 +51,13 @@ def index():
         
         totalrequests = bus.count()
         
-        # get error code
-        errorcode = int(data["errorcode"])
-        print errorcode
-        
-        # get bus address
-        numberofresults = str(data["numberofresults"])
+
         
         # get bus results
         if errorcode == 0:
+            # get bus stop address
+            stopAddress = crawl(stop)
+            # get timestamp
             timestamp = data["timestamp"]
             for i,j in enumerate(data["results"], start=1):
                 bus_result = {}
@@ -67,7 +72,7 @@ def index():
         # Print to console/log
         #print json.dumps(data, indent=2)
     
-    return render_template('index.html', results=bus_results, stop=stop, timestamp=timestamp, errorcode=errorcode, numberofresults=numberofresults, totalrequests=totalrequests)
+    return render_template('index.html', results=bus_results, stop=stop, timestamp=timestamp, errorcode=errorcode, stopAddress=stopAddress, totalrequests=totalrequests)
 
 @app.route('/about')
 def about():
