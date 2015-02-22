@@ -15,8 +15,7 @@
     <!-- CSS styles -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
-    
-    <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
+
 
 </head>
 
@@ -31,32 +30,30 @@
             <div class="pure-menu pure-menu-open">
                 <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120"></a>
                 <ul>
-                    <li class="pure-menu-selected"><a href="">Search by <br>stop number</a></li>
-                    <li><a href="{{ url_for('routelist') }}">Search by <br>route</a></li>
+                    <li><a href="{{ url_for('index') }}">Search by <br>stop number</a></li>
+                    <li class="pure-menu-selected"><a href="{{ url_for('routelist') }}">Search by <br>route</a></li>
                     <li><a href="{{ url_for('about') }}">About</a></li>
                 </ul>
             </div>
         </div>
         <div class="container">
             <div class="header">
-                <h1>Real Time Bus Information</h1>
+                <h1>Route {{route}}</h1>
                 <h2>total requests so far: {{ totalrequests }}</h2>
             </div>
             <div class="content">
-                <div class="search-form">
-                    <form role="form" method='POST' action='/'>
-                        <input type="text" autofocus = "autofocus" pattern="[0-9]*" required = "required" name="stopid" class="enjoy-input" placeholder="Enter your stop number" style="max-width: 450px;" value="{{ stop }}">
-                        <button class="pure-button" type="submit"><img src="" alt="" /> Submit</button>
-                    </form>
-                </div>
-                <div class="bus">
-                        <a href="http://qkirin.deviantart.com/art/A-Dublin-Bus-Gif-507115954" target="_blank"><img src="../static/images/bus.gif" alt="Dublin Bus" height="120px"></a>
-                    </div>
+                <h3>{{direction_str}}:</h3>
+                <form action="/route/{{route}}/{{direction}}" method="post">
+                    {% for stop in stoplist %}
+                    <p>{{stop.keys()[0]}} - {{stop.values()[0]}}</p> 
+                    <button name="stopid" class="pure-button" type="submit" value="{{stop.keys()[0]}}"> >> </button>
+                    {% endfor %}
+                </form>
             </div>
         </div>
 
     </div>
-    
+    <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
 </body>
 
 </html>

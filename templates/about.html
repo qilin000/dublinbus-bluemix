@@ -28,11 +28,11 @@
         </a>
         <div id="menu">
             <div class="pure-menu pure-menu-open">
-                <a class="pure-menu-heading"><img src="../static/images/dublin_bus_black_and_white.png" alt="dublin bus logo" width="120"></a>
+                <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120"></a>
                 <ul>
-                    <li><a href="{{ url_for('index') }}">Search by <br>bus stop number</a>
-                    </li>
-                    <li class="pure-menu-selected"><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('index') }}">Search by <br>stop number</a></li>
+                    <li><a href="{{ url_for('routelist') }}">Search by <br>route</a></li>
+                    <li class="pure-menu-selected"><a href="">About</a></li>
                 </ul>
             </div>
         </div>
@@ -95,7 +95,7 @@
 
     </div>
     </div>
-    <script src="../static/js/ui.js"></script>
+    <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
 </body>
 
 </html>

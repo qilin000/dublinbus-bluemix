@@ -151,7 +151,6 @@ a:active {
 }
 .content {
     margin: 0 auto;
-    padding: 2em 2em;
     max-width: 800px;
     margin-bottom: 50px;
     line-height: 1.6em;
@@ -259,7 +258,7 @@ a:active {
 .menu-link span:after {
     margin-top: 0.6em;
 }
-@media (min-width: 48em) {
+@media (min-width: 45em) {
     .header,
     .content {
         padding-left: 2em;
