@@ -15,8 +15,11 @@
     <!-- CSS styles -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nprogress.css') }}" />
 
-
+    <!-- Javascript -->
+    <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
+    
 </head>
 
 <body>
@@ -30,8 +33,9 @@
             <div class="pure-menu pure-menu-open">
                 <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120"></a>
                 <ul>
-                    <li class="pure-menu-selected"><a href="{{ url_for('index') }}">Search by <br>stop number</a></li>
-                    <li><a href="{{ url_for('routelist') }}">Search by <br>route</a></li>
+                    <li class="pure-menu-selected"><a href="{{ url_for('index') }}">Search by stop no.</a></li>
+                    <li><a href="{{ url_for('routelist') }}">Search by route</a></li>
+                    <li><a href="{{ url_for('map') }}">Search by map</a></li>
                     <li><a href="{{ url_for('about') }}">About</a></li>
                 </ul>
             </div>
@@ -43,7 +47,6 @@
             </div>
             <div class="content">
                 <div class="rg-container">
-                    {% if errorcode == 0 %}
                     <div class="rg-header">
                         <div class="rg-hed">Bus Stop #{{ stop }}</div>
                         <div class="rg-subhed">{{ stopAddress }}</div>
@@ -74,18 +77,15 @@
                         <div class="rg-credit"><span class="pre-colon">DATA</span>: <span class="post-colon"><a href="http://dublinked.com/datastore/datasets/dataset-300.php" target="_blank">Dublinked</a></span>
                         </div>
                     </div>
-                    {% elif errorcode == 1 %}
-                    <div class="bus">
-                        <a href="http://qkirin.deviantart.com/art/A-Dublin-Bus-Gif-507115954" target="_blank"><img src="../static/images/bus.gif" alt="Dublin Bus" height="100px"></a>
-                        <h3>Sorry, no data for Bus stop #{{ stop }}</h3>
-                    </div>
-                    {% endif %}
-
                 </div>
             </div>
         </div>
 
     </div>
+    <script>
+        NProgress.set(0.5);
+        NProgress.done(true);
+    </script>
     <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
 </body>
 

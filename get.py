@@ -4,9 +4,9 @@ import re
 import os  
 import pymongo
 
-# Replace user and password with API key
-user = ""
-password = ""
+# Remove user and password with API key
+
+
 
 def getData(stopid):
     # realtime bus information
@@ -44,6 +44,7 @@ def getAddress(stopid):
     # handle return value
     return result 
 
+
 # Decode hood
 def _decode_list(data):
     rv = []
@@ -56,6 +57,7 @@ def _decode_list(data):
             item = _decode_dict(item)
         rv.append(item)
     return rv
+
 
 def _decode_dict(data):
     rv = {}
@@ -72,8 +74,22 @@ def _decode_dict(data):
     return rv
 
 
+# Retrieve address given a specific bus stop
+def getAllStops():
+
+    # get data
+    stopaddress_json = open("./static/json/stopaddress.json")
+    stopaddress = json.load(stopaddress_json, object_hook=_decode_dict)
+    stopaddress_json.close()
+
+    result = stopaddress.keys()
+
+    # handle return value
+    return result 
+
+
 # return a list of all routes available
-def getRouteList():
+def getAllRoutes():
     routelist = []
 
     # get data
@@ -87,6 +103,7 @@ def getRouteList():
     # return a sorted result
     return sorted(routelist)
 
+
 # return two directions given a specific route
 def getDirections(route):
     directions = []
@@ -99,6 +116,7 @@ def getDirections(route):
     directions.extend(routeinfo[route].keys()) 
 
     return directions
+
 
 # return a stop list given a specific direction
 def getStopList(route, direction):
@@ -115,12 +133,14 @@ def getStopList(route, direction):
 
     return stopdict   
 
+
 # Get database name
 def db_name(uri):
     # uri = "mongodb://IbmCloud_mmqbqveq_l91282ub_gcs904fk:A5np9uykPs_v00n5tdrKwUXviKQ27uAK@ds055200.mongolab.com:55200/IbmCloud_mmqbqveq_l91282ub"
 
     result = re.split(r'/', uri)
     return result[-1]
+
 
 # Get a collection
 def getDb():

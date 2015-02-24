@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
 
+    <!-- Javascript -->
+    <script src="{{ url_for('static', filename='js/pace.min.js') }}"></script>
 
 </head>
 
@@ -30,8 +32,9 @@
             <div class="pure-menu pure-menu-open">
                 <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120"></a>
                 <ul>
-                    <li><a href="{{ url_for('index') }}">Search by <br>stop number</a></li>
-                    <li><a href="{{ url_for('routelist') }}">Search by <br>route</a></li>
+                    <li><a href="{{ url_for('index') }}">Search by stop no.</a></li>
+                    <li><a href="{{ url_for('routelist') }}">Search by route</a></li>
+                    <li><a href="{{ url_for('map') }}">Search by map</a></li>
                     <li class="pure-menu-selected"><a href="">About</a></li>
                 </ul>
             </div>
@@ -55,16 +58,16 @@
                             <td>display real time information of all routes for a given bus stop number;</td>
                         </tr>
                         <tr>
-                            <td>-</td>
+                            <td>√</td>
                             <td>search by bus route</td>
                         </tr>
                         <tr>
-                            <td>-</td>
-                            <td>search timetables</td>
+                            <td>building</td>
+                            <td>search by map</td>
                         </tr>
                         <tr>
                             <td>-</td>
-                            <td>display realt time information of local weather</td>
+                            <td>search timetable</td>
                         </tr>
                     </tbody>
                 </table>

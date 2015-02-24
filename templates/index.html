@@ -11,16 +11,26 @@
 
     <!-- icon-->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}" />
-    
+
     <!-- CSS styles -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
-    
-    <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nprogress.css') }}" />
+
+    <!-- Javascript -->
+    <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
 
 </head>
 
 <body>
+    <div id="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
     <div id="layout">
         <!-- Menu toggle -->
         <a href="#menu" id="menuLink" class="menu-link">
@@ -29,34 +39,55 @@
         </a>
         <div id="menu">
             <div class="pure-menu pure-menu-open">
-                <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120"></a>
+                <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120">
+                </a>
                 <ul>
-                    <li class="pure-menu-selected"><a href="">Search by <br>stop number</a></li>
-                    <li><a href="{{ url_for('routelist') }}">Search by <br>route</a></li>
-                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li class="pure-menu-selected"><a href="">Search by stop no.</a>
+                    </li>
+                    <li><a href="{{ url_for('routelist') }}">Search by route</a>
+                    </li>
+                    <li><a href="{{ url_for('map') }}">Search by map</a>
+                    </li>
+                    <li><a href="{{ url_for('about') }}">About</a>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="container">
             <div class="header">
-                <h1>Real Time Bus Information</h1>
+                <h1>Search by stop number</h1>
                 <h2>total requests so far: {{ totalrequests }}</h2>
             </div>
             <div class="content">
                 <div class="search-form">
                     <form role="form" method='POST' action='/'>
-                        <input type="text" autofocus = "autofocus" pattern="[0-9]*" required = "required" name="stopid" class="enjoy-input" placeholder="Enter your stop number" style="max-width: 450px;" value="{{ stop }}">
-                        <button class="pure-button" type="submit"><img src="" alt="" /> Submit</button>
+                        <input type="text" autofocus="autofocus" pattern="[0-9]*" required="required" name="stopid" class="enjoy-input" placeholder="Enter your stop number" height="43" style="max-width: 450px;" value="{{ stop }}" autocomplete="off" autofocus>
+                        <button class="search-button pure-button" type="submit" onclick="startProgress()"><img src="" alt="" />Search</button>
                     </form>
                 </div>
                 <div class="bus">
-                        <a href="http://qkirin.deviantart.com/art/A-Dublin-Bus-Gif-507115954" target="_blank"><img src="../static/images/bus.gif" alt="Dublin Bus" height="120px"></a>
-                    </div>
+                    <a href="http://qkirin.deviantart.com/art/A-Dublin-Bus-Gif-507115954" target="_blank"><img src="../static/images/bus.gif" alt="Dublin Bus" height="100px">
+                    </a>
+                    {% if errorcode == 1 %}
+                    <h3>Sorry, no data for bus stop #{{ stopid }}</h3> 
+                    {% endif %}
+                </div>
             </div>
         </div>
 
     </div>
-    
+    <script>
+        {% if errorcode == 1 %}
+        NProgress.done(true);
+        {% endif %}
+        function startProgress() {
+            NProgress.start();
+            NProgress.set(0.4);
+            setTimeout(function(){ NProgress.done(true); }, 1200);
+        }
+        NProgress.done(true);
+    </script>
+    <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
 </body>
 
 </html>

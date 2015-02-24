@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import os
-from get import getData, getDb, getAddress, getRouteList, getDirections, getStopList
+from get import getData, getDb, getAddress, getAllRoutes, getAllStops, getDirections, getStopList
 
 app = Flask(__name__)
 
@@ -10,25 +10,31 @@ bus = getDb()
 @app.route('/', methods=['GET', 'POST'])
 def index():
     totalrequests = bus.count()
+    allstops = getAllStops()
+    errorcode = 0
     stopid = ""
     
     if request.method == "POST":
         # get stopid that the user has entered
         stopid = request.form['stopid']
 
-    if stopid:
-        return redirect('/stop/' + stopid)
+        if stopid in allstops:
+            errorcode = 0
+            return redirect('/stop/' + stopid)
+
+        else:
+            errorcode = 1
     
-    return render_template('index.html', totalrequests=totalrequests, stopid=stopid)
+    return render_template('index.html', totalrequests=totalrequests, stopid=stopid, errorcode=errorcode)
 
 @app.route('/stop/<stopid>', methods=['GET', 'POST'])
 def stop(stopid):
     bus_results = []
     timestamp = ""
-    errorcode = 2
     stopAddress = ""
     bus_doc = {}
     totalrequests = bus.count()
+    errorcode = 0
     
     # Type: json
     data = getData(stopid)
@@ -73,18 +79,21 @@ def stop(stopid):
 @app.route('/routelist', methods=['GET', 'POST'])
 def routelist():
     totalrequests = bus.count()
-    routelist = getRouteList()
+    routelist = getAllRoutes()
+    errorcode = 0
     route = ""
 
     if request.method == "POST":
         route = request.form['routelist']
 
-        if route:
+        if route in routelist:
+            errorcode = 0
             return redirect('/route/' + route) 
-        
+        else:
+            errorcode = 1
+            
     
-    
-    return render_template('routelist.html', totalrequests=totalrequests, routelist = routelist)
+    return render_template('routelist.html', totalrequests=totalrequests, route=route, routelist=routelist, errorcode=errorcode)
 
 
 @app.route('/route/<route>', methods=['GET', 'POST'])
@@ -119,6 +128,11 @@ def direction(route, direction):
 
     return render_template('direction.html', totalrequests=totalrequests, route=route, direction=direction, direction_str=direction_str, stoplist=stoplist)
 
+@app.route('/map', methods=['GET', 'POST'])
+def map():
+    totalrequests = bus.count()
+
+    return render_template('map.html', totalrequests=totalrequests)
 
 @app.route('/about')
 def about():

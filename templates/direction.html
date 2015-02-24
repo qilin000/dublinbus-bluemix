@@ -15,7 +15,10 @@
     <!-- CSS styles -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nprogress.css') }}" />
 
+    <!-- Javascript -->
+    <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
 
 </head>
 
@@ -30,8 +33,9 @@
             <div class="pure-menu pure-menu-open">
                 <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120"></a>
                 <ul>
-                    <li><a href="{{ url_for('index') }}">Search by <br>stop number</a></li>
-                    <li class="pure-menu-selected"><a href="{{ url_for('routelist') }}">Search by <br>route</a></li>
+                    <li><a href="{{ url_for('index') }}">Search by stop no.</a></li>
+                    <li class="pure-menu-selected"><a href="{{ url_for('routelist') }}">Search by route</a></li>
+                    <li><a href="{{ url_for('map') }}">Search by map</a></li>
                     <li><a href="{{ url_for('about') }}">About</a></li>
                 </ul>
             </div>
@@ -42,17 +46,43 @@
                 <h2>total requests so far: {{ totalrequests }}</h2>
             </div>
             <div class="content">
-                <h3>{{direction_str}}:</h3>
-                <form action="/route/{{route}}/{{direction}}" method="post">
-                    {% for stop in stoplist %}
-                    <p>{{stop.keys()[0]}} - {{stop.values()[0]}}</p> 
-                    <button name="stopid" class="pure-button" type="submit" value="{{stop.keys()[0]}}"> >> </button>
-                    {% endfor %}
-                </form>
+                <div class="rg-container">
+                    <div class="rg-header">
+                        <div class="rg-hed">Route {{ route }}</div>
+                        <div class="rg-subhed">{{ direction_str }}</div>
+                    </div>
+
+                    <div class="rg-content rg-table">
+                        <table class="rg-table">
+                            <thead>
+                                <th class="text rg-th">Stop Number</th>
+                                <th class="text rg-th">Address</th>
+                                <th class="text rg-th">Real Time Information</th>
+                            </thead>
+                            {% for stop in stoplist %}
+                            <tbody>
+                                <tr>
+                                    <td class="text" data-title="Stop">{{stop.keys()[0]}}</td>
+                                    <td class="text" data-title="Address">{{stop.values()[0]}}</td>
+                                    <td class="text" data-title="Real Time Information"><form action="/route/{{route}}/{{direction}}" method="post" style="display: inline;"><button name="stopid" class="link-button" type="submit" onclick="startProgress()" value="{{stop.keys()[0]}}" > Search </button></form></td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
+    <script>
+        function startProgress() {
+            NProgress.start();
+            NProgress.set(0.4);
+            setTimeout(function(){ NProgress.done(true); }, 1200);
+        }
+        NProgress.done(true);
+    </script>
     <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
 </body>
 

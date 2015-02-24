@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DUBLIN BUS APP - About</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Real time dublin bus information">
+    <meta name="keywords" content="Dublin bus, RTPI">
+    <meta name="author" content="Lin Qi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- icon-->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}" />
+    
+    <!-- CSS styles -->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    
+    <!-- Javascript -->
+    <script src="{{ url_for('static', filename='js/pace.min.js') }}"></script>
+
+</head>
+
+<body>
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+        <div id="menu">
+            <div class="pure-menu pure-menu-open">
+                <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120"></a>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Search by stop no.</a></li>
+                    <li><a href="{{ url_for('routelist') }}">Search by route</a></li>
+                    <li class="pure-menu-selected"><a href="">Search by map</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header">
+                <h1>Search by Map</h1>
+                <h2>total requests so far: {{ totalrequests }}</h2>
+            </div>
+            
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
+</body>
+
+</html>

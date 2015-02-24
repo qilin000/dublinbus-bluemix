@@ -1,12 +1,33 @@
+/* Customized styles*/
+
+.search-button {
+    height: 46px;
+    position: relative;
+    top: 0px;
+    left: -5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-style:none;
+}
+
 .search-form form input {
     margin: 0 auto;
 }
+
 .search-form {
+    height: 44px;
+    margin-top: 2em;
     text-align: center;
 }
+
 .container {
     max-width: 1000px;
 }
+
 .circular {
     width: 100px;
     height: 100px;
@@ -16,10 +37,12 @@
     background: url(../images/linkedin.png) no-repeat;
     background-size: 100%;
 }
+
 .circular img {
     opacity: 0;
     filter: alpha(opacity=0);
 }
+
 .about {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0em auto;
@@ -28,42 +51,68 @@
     margin-bottom: 50px;
     line-height: 2em;
 }
+
 .bus {
-    margin-top: 2em;
+    margin-top: 3em;
     text-align: center;
 }
+
 a:link {
     color: #3399FF;
     text-decoration: none
 }
+
 a:visited {
     color: #3399FF;
     text-decoration: none
 }
+
 a:hover {
     color: #FF3300;
     text-decoration: none
 }
+
 a:active {
     color: #FF3300;
     text-decoration: none
 }
+
+.link-button {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    color: rgba(0, 142, 198, 1) !important;
+    cursor: pointer;
+}
+
+.link-button:visited {
+    color: rgba(0, 142, 198, 1) !important;
+    cursor: pointer;
+}
+
+.link-button:hover {
+    color: #FF3300 !important;
+    cursor: pointer;
+}
+
+.link-button:active {
+    color: #FF3300 !important;
+    cursor: pointer;
+}
 /*Author: XB Software */
-
 /*link: http://enjoycss.com/ */
-
 /*styles for input form */
 
 .enjoy-input {
+    outline: none; 
     display: inline-block;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    width: 70%;
+    width: 50%;
+    height: 24px;
     padding: 10px 30px;
     border: 1px solid #b7b7b7;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
     font: normal medium/normal Arial, Helvetica, sans-serif;
     color: rgba(0, 142, 198, 1);
     text-indent: 3px;
@@ -86,6 +135,7 @@ a:active {
     -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
     transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
+
 .enjoy-input:hover {
     border: 1px solid #a3a3a3;
     background: url("../images/search.svg"), rgba(255, 255, 255, 1);
@@ -102,8 +152,9 @@ a:active {
     -o-transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
     transition: all 100ms cubic-bezier(0.42, 0, 0.58, 1);
 }
+
 .enjoy-input:focus {
-    border: 1px solid #018dc4;
+    border: 1px solid #b7b7b7;
     background-repeat: no-repeat;
     background-position: 8px center;
     -webkit-background-origin: padding-box;
@@ -120,9 +171,7 @@ a:active {
     transition: all 50ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 /*Author: purecss.io */
-
 /*link: http://purecss.io/layouts/side-menu/ */
-
 /*styles for side-menu, header, content*/
 
 #layout,
@@ -134,27 +183,33 @@ a:active {
     -o-transition: all 0.2s ease-out;
     transition: all 0.2s ease-out;
 }
+
 #layout {
     position: relative;
     padding-left: 0;
 }
+
 #layout.active {
     position: relative;
-    left: 150px;
+    left: 170px;
 }
+
 #layout.active #menu {
-    left: 150px;
-    width: 150px;
+    left: 170px;
+    width: 170px;
 }
+
 #layout.active .menu-link {
-    left: 150px;
+    left: 170px;
 }
+
 .content {
     margin: 0 auto;
     max-width: 800px;
     margin-bottom: 50px;
     line-height: 1.6em;
 }
+
 .header {
     margin: 1em;
     color: #333;
@@ -162,86 +217,106 @@ a:active {
     padding: 2.5em 2em 0;
     border-bottom: 1px solid #eee;
 }
+
 .header h1 {
     margin: 0.2em 0;
     font-size: 3em;
     font-weight: 300;
 }
+
 .header h2 {
     font-weight: 300;
     color: #ccc;
     padding: 0;
     margin-top: 0;
 }
+
 #menu {
-    margin-left: -150px;
+    text-indent: 5px;
+    margin-left: -170px;
     /* "#menu" width */
-    width: 150px;
+    
+    width: 170px;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     z-index: 1000;
     /* so the menu or its navicon stays above all content */
+    
     background: #191818;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
+
 #menu a {
     font-family: Arial, Helvetica, sans-serif;
     color: #999;
     border: none;
     padding: 0.6em 0 0.6em 0.6em;
 }
+
 #menu .pure-menu,
 #menu .pure-menu ul {
     border: none;
     background: transparent;
 }
+
 #menu .pure-menu ul,
 #menu .pure-menu .menu-item-divided {
     border-top: 1px solid #333;
 }
+
 #menu .pure-menu li a:hover,
 #menu .pure-menu li a:focus {
     background: #333;
 }
+
 #menu .pure-menu-selected,
 #menu .pure-menu-heading {
     background: black;
 }
+
 #menu .pure-menu-selected a {
     color: #fff;
 }
+
 #menu .pure-menu-heading {
     font-size: 110%;
     color: #fff;
     margin: 0;
 }
+
 .menu-link {
     position: fixed;
     display: block;
     /* show this only on small screens */
+    
     top: 0;
     left: 0;
     /* "#menu width" */
+    
     background: #000;
     background: rgba(0, 0, 0, 0.7);
     font-size: 10px;
     /* change this value to increase/decrease button size */
+    
     z-index: 10;
     width: 2em;
     height: auto;
     padding: 2.1em 1.6em;
 }
+
 .menu-link:hover,
 .menu-link:focus {
     background: #000;
 }
+
 .menu-link span {
     position: relative;
     display: block;
 }
+
 .menu-link span,
 .menu-link span:before,
 .menu-link span:after {
@@ -249,15 +324,18 @@ a:active {
     width: 100%;
     height: 0.2em;
 }
+
 .menu-link span:before,
 .menu-link span:after {
     position: absolute;
     margin-top: -0.6em;
     content: " ";
 }
+
 .menu-link span:after {
     margin-top: 0.6em;
 }
+
 @media (min-width: 45em) {
     .header,
     .content {
@@ -265,29 +343,29 @@ a:active {
         padding-right: 2em;
     }
     #layout {
-        padding-left: 150px;
+        padding-left: 170px;
         /* left col width "#menu" */
+        
         left: 0;
     }
     #menu {
-        left: 150px;
+        text-indent: 5px;
+        left: 170px;
     }
     .menu-link {
         position: fixed;
-        left: 150px;
+        left: 170px;
         display: none;
     }
     #layout.active .menu-link {
-        left: 150px;
+        left: 170px;
     }
     .about {
         padding: 2em 6em;
     }
 }
 /*Author: Russell Goldenberg*/
-
 /*link: github.com/russellgoldenberg/responsive-table-generator */
-
 /*styles for graphic info (hed, subhed, source, credit)*/
 
 .rg-container {
@@ -298,25 +376,30 @@ a:active {
     padding: 1em 0;
     color: #1a1a1a;
 }
+
 .rg-header {
     margin-bottom: 1em;
 }
+
 .rg-hed {
     font-family: "Benton Sans Bold", Helvetica, Arial, sans-serif;
     font-weight: bold;
     font-size: 1.35em;
     margin-bottom: 0.25em;
 }
+
 .rg-subhed {
     font-size: 1em;
     line-height: 1.4em;
 }
+
 .rg-source-and-credit {
     font-family: Georgia, "Times New Roman", Times, serif;
     width: 100%;
     overflow: hidden;
     margin-top: 1em;
 }
+
 .rg-source {
     margin: 0;
     float: left;
@@ -324,9 +407,11 @@ a:active {
     font-size: 0.75em;
     line-height: 1.5em;
 }
+
 .rg-source .pre-colon {
     text-transform: uppercase;
 }
+
 .rg-credit {
     margin: 0;
     color: #999;
@@ -337,6 +422,7 @@ a:active {
     font-size: 0.65em;
     line-height: 1.5em;
 }
+
 @media (max-width: 640px) {
     .rg-source-and-credit > div {
         width: 100%;
@@ -355,6 +441,7 @@ table.rg-table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
 table.rg-table * {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -367,34 +454,43 @@ table.rg-table * {
     text-align: left;
     color: #333;
 }
+
 table.rg-table thead {
     border-bottom: 1px solid rgba(195, 195, 197, .3);
 }
+
 table.rg-table th {
     font-weight: bold;
     padding: 0.5em;
     font-size: 0.85em;
 }
+
 table.rg-table td {
     padding: 0.5em;
     font-size: 0.9em;
 }
+
 table.rg-table .highlight td {
     font-weight: bold;
 }
+
 table.rg-table tr {
     border-bottom: 1px solid rgba(195, 195, 197, .3);
     color: #222;
 }
+
 table.rg-table .number {
     text-align: right;
 }
+
 table.rg-table.zebra tr:nth-child(even) {
     background: rgba(195, 195, 197, 0.1);
 }
+
 table.rg-table tr.highlight {
     background: #edece4 !important;
 }
+
 @media screen and (max-width: 500px) {
     table.rg-table {
         display: block;
