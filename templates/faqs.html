@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>DUBLIN BUS APP - About</title>
+    <title>DUBLIN BUS APP - FAQs</title>
     <meta charset="UTF-8">
     <meta name="description" content="Real time dublin bus information">
     <meta name="keywords" content="Dublin bus, RTPI">
@@ -15,6 +15,10 @@
     <!-- CSS styles -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nprogress.css') }}" />
+
+    <!-- Javascript -->
+    <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
 
     <!-- Javascript -->
     <script src="{{ url_for('static', filename='js/pace.min.js') }}"></script>
@@ -35,13 +39,13 @@
                     <li><a href="{{ url_for('index') }}">Search by stop no.</a></li>
                     <li><a href="{{ url_for('routelist') }}">Search by route</a></li>
                     <li><a href="{{ url_for('map') }}">Search by map</a></li>
-                    <li class="pure-menu-selected"><a href="">About</a></li>
+                    <li class="pure-menu-selected"><a href="">FAQs</a></li>
                 </ul>
             </div>
         </div>
         <div class="container">
             <div class="header">
-                <h1>About</h1>
+                <h1>FAQs</h1>
             </div>
             <div class="about">
                 <div class="author">
@@ -98,6 +102,9 @@
 
     </div>
     </div>
+    <script>
+        NProgress.done(true);
+    </script>
     <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
 </body>
 

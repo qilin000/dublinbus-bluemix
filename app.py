@@ -134,10 +134,10 @@ def map():
 
     return render_template('map.html', totalrequests=totalrequests)
 
-@app.route('/about')
-def about():
+@app.route('/faqs')
+def faqs():
 
-    return render_template('about.html')
+    return render_template('faqs.html')
 
 port = os.getenv('VCAP_APP_PORT', '8901')
 

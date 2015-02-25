@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>DUBLIN BUS APP - About</title>
+    <title>DUBLIN BUS APP - Search on Map</title>
     <meta charset="UTF-8">
     <meta name="description" content="Real time dublin bus information">
     <meta name="keywords" content="Dublin bus, RTPI">
@@ -11,14 +11,51 @@
 
     <!-- icon-->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}" />
-    
+
     <!-- CSS styles -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
-    
-    <!-- Javascript -->
-    <script src="{{ url_for('static', filename='js/pace.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nprogress.css') }}" />
 
+    <!-- Javascript -->
+    <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
+
+    <!-- Map stuff -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script>
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(53.349799, -6.260312);
+            var mapOptions = {
+                zoom: 17,
+                center: myLatlng
+            };
+
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'Hello World!'
+            });
+            
+            google.maps.event.addDomListener(window, "resize", function () {
+                var center = map.getCenter();
+                google.maps.event.trigger(map, "resize");
+                map.setCenter(center);
+            });
+
+        }
+
+        function loadScript() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' + '&signed_in=true&callback=initialize';
+            document.body.appendChild(script);
+        }
+
+        window.onload = loadScript;
+    </script>
 </head>
 
 <body>
@@ -30,12 +67,16 @@
         </a>
         <div id="menu">
             <div class="pure-menu pure-menu-open">
-                <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120"></a>
+                <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120">
+                </a>
                 <ul>
-                    <li><a href="{{ url_for('index') }}">Search by stop no.</a></li>
-                    <li><a href="{{ url_for('routelist') }}">Search by route</a></li>
-                    <li class="pure-menu-selected"><a href="">Search by map</a></li>
-                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('index') }}">Search by stop no.</a>
+                    </li>
+                    <li><a href="{{ url_for('routelist') }}">Search by route</a>
+                    </li>
+                    <li class="pure-menu-selected"><a href="">Search by map</a>
+                    </li>
+                    <li><a href="{{ url_for('faqs') }}">FAQs</a>
                 </ul>
             </div>
         </div>
@@ -44,10 +85,18 @@
                 <h1>Search by Map</h1>
                 <h2>total requests so far: {{ totalrequests }}</h2>
             </div>
-            
+            <div style="width:100%; height:450px;">
+                <div id="map-canvas" style="width: 100%; height: 100%"></div>
+            </div>
+
+
         </div>
     </div>
+    <script>
+        NProgress.done(true);
+    </script>
     <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
+    
 </body>
 
 </html>

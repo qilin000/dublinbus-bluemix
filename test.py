@@ -1,4 +1,4 @@
-from get import getAllRoutes, getAllStops, getDirections, getStopList
+from get import getAllRoutes, getAllStops, getDirections, getStopList, getLocation, getAllLocations
 
 routelist = getAllRoutes()
 
@@ -9,13 +9,24 @@ for i in routelist[0:10]:
 	print routelist.index(i)
 	print getDirections(i)
 
-route = "1"
-direction = "From Santry via O'Connell Street to Sandymount"
+#route = "1"
+#direction = "From Santry via O'Connell Street to Sandymount"
 
-stoplist = getStopList(route, direction)
+#stoplist = getStopList(route, direction)
 
-print stoplist
+#print stoplist
 
-allstops = getAllStops()
+#allstops = getAllStops()
 
-print allstops
+#print allstops
+
+stopid = 262
+
+print getLocation(stopid)
+
+fakeid = 1
+
+print getLocation(fakeid)
+
+print getAllLocations()
+

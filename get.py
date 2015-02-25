@@ -6,8 +6,6 @@ import pymongo
 
 # Remove user and password with API key
 
-
-
 def getData(stopid):
     # realtime bus information
     rturl = "/cgi-bin/rtpi/realtimebusinformation?"
@@ -41,7 +39,29 @@ def getAddress(stopid):
     except KeyError:
         result = False
 
-    # handle return value
+    # return String/boolean
+    return result 
+
+def getLocation(stopid):
+    location = []
+
+    # get data
+    stopaddress_json = open("./static/json/stopaddress.json")
+    stopaddress = json.load(stopaddress_json, object_hook=_decode_dict)
+    stopaddress_json.close()
+
+    # handle KeyError
+    try:
+        lat = stopaddress[str(stopid)]["latitude"]
+        location.append(lat)
+        lng = stopaddress[str(stopid)]["longitude"]
+        location.append(lng)
+    except KeyError:
+        result = False
+
+    result = location
+
+    # return list
     return result 
 
 
@@ -74,7 +94,7 @@ def _decode_dict(data):
     return rv
 
 
-# Retrieve address given a specific bus stop
+# return a list of all stops available
 def getAllStops():
 
     # get data
@@ -84,7 +104,7 @@ def getAllStops():
 
     result = stopaddress.keys()
 
-    # handle return value
+    # a list of Strings
     return result 
 
 
