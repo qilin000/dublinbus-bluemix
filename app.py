@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import os
-from get import getData, getDb, getAddress, getAllRoutes, getAllStops, getDirections, getStopList
+from get import getData, getDb, getAddress, getAllStops
 
 app = Flask(__name__)
 
@@ -75,58 +75,13 @@ def stop(stopid):
     
     return render_template('stop.html', results=bus_results, stop=stopid, timestamp=timestamp, errorcode=errorcode, stopAddress=stopAddress, totalrequests=totalrequests)
 
-#new
+# powered by AngularJS
 @app.route('/routelist', methods=['GET', 'POST'])
 def routelist():
     totalrequests = bus.count()
-    routelist = getAllRoutes()
-    errorcode = 0
-    route = ""
-
-    if request.method == "POST":
-        route = request.form['routelist']
-
-        if route in routelist:
-            errorcode = 0
-            return redirect('/route/' + route) 
-        else:
-            errorcode = 1
-            
     
-    return render_template('routelist.html', totalrequests=totalrequests, route=route, routelist=routelist, errorcode=errorcode)
+    return render_template('routelist.html', totalrequests=totalrequests)
 
-
-@app.route('/route/<route>', methods=['GET', 'POST'])
-def route(route):
-    totalrequests = bus.count()
-    directions = getDirections(route)
-
-    if request.method == "POST":
-        direction = request.form['direction']
-        direction = directions.index(direction)
-        print direction
-
-        if direction in [0, 1]:
-            return redirect('/route/' + route + '/' + str(direction))
-
-    return render_template('route.html', totalrequests=totalrequests, route=route, directions=directions)
-
-@app.route('/route/<route>/<direction>', methods=['GET', 'POST'])
-def direction(route, direction):
-    totalrequests = bus.count()
-    directions = getDirections(route)
-    direction_str = directions[int(direction)]
-
-    stoplist = getStopList(route, direction_str)
-
-    if request.method == "POST":
-        stopid = request.form['stopid']
-
-        if stopid:
-            return redirect('/stop/' + stopid) 
-
-
-    return render_template('direction.html', totalrequests=totalrequests, route=route, direction=direction, direction_str=direction_str, stoplist=stoplist)
 
 @app.route('/map', methods=['GET', 'POST'])
 def map():

@@ -1,0 +1,22 @@
+<div class="rg-container">
+    <div class="rg-header">
+        <div class="rg-hed">Route {{ route }} - Choose Your Direction</div>
+    </div>
+
+    <div class="rg-content rg-table">
+        <table class="rg-table">
+            <thead>
+                <th class="text rg-th">Route</th>
+                <th class="text rg-th">Direction</th>
+                <th class="text rg-th">View</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="info in routeinfo.info">
+                    <td class="text" data-title="Route">{{ route }}</td>
+                    <td class="text" data-title="Direction">{{ info.direction }}</td>
+                    <td class="text" data-title="View"><a href="#/{{route}}/{{info.direction}}">View</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

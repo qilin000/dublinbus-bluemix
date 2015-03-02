@@ -1,0 +1,24 @@
+<div class="rg-container">
+    <div class="rg-header">
+        <div class="rg-hed">Route {{route}} - Choose Your Bus Stop Number</div>
+        <div class="rg-subhed">{{direction}}</div>
+    </div>
+
+    <div class="rg-content rg-table">
+        <table class="rg-table">
+            <thead>
+                <th class="text rg-th">Stop Number</th>
+                <th class="text rg-th">Address</th>
+                <th class="text rg-th">Real Time Information</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="stopinfo in directioninfo.stops">
+                    <td class="text" data-title="Stop">{{stopinfo.stopid}}</td>
+                    <td class="text" data-title="Address">{{stopinfo.address}}</td>
+                    <td class="text" data-title="Real Time Information"><button class="link-button" ng-click="go(stopinfo.stopid)">View</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

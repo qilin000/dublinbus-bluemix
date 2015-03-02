@@ -35,52 +35,18 @@ def getAddress(stopid):
     stopaddress = json.load(stopaddress_json, object_hook=_decode_dict)
     stopaddress_json.close()
 
-    # handle KeyError
-    try:
-        result = stopaddress[str(stopid)]["address"]
-    except KeyError:
-        result = False
+    for i in stopaddress:
+        if int(stopid) == int(i["stopid"]):
+            result = i["address"]
+            break 
+        else:
+            result = "N/A"
 
-    # return String/boolean
     return result 
 
-def getLocation(stopid):
-    location = []
-
-    # get data
-    stopaddress_json = open("./static/json/stopaddress.json")
-    stopaddress = json.load(stopaddress_json, object_hook=_decode_dict)
-    stopaddress_json.close()
-
-    # handle KeyError
-    try:
-        lat = stopaddress[str(stopid)]["latitude"]
-        location.append(lat)
-        lng = stopaddress[str(stopid)]["longitude"]
-        location.append(lng)
-    except KeyError:
-        result = False
-
-    result = location
-
-    # return list
-    return result 
-
-
+    # return String
+    
 # Decode hood
-def _decode_list(data):
-    rv = []
-    for item in data:
-        if isinstance(item, unicode):
-            item = item.encode('utf-8')
-        elif isinstance(item, list):
-            item = _decode_list(item)
-        elif isinstance(item, dict):
-            item = _decode_dict(item)
-        rv.append(item)
-    return rv
-
-
 def _decode_dict(data):
     rv = {}
     for key, value in data.iteritems():
@@ -98,62 +64,17 @@ def _decode_dict(data):
 
 # return a list of all stops available
 def getAllStops():
-
+    result = []
     # get data
     stopaddress_json = open("./static/json/stopaddress.json")
     stopaddress = json.load(stopaddress_json, object_hook=_decode_dict)
     stopaddress_json.close()
 
-    result = stopaddress.keys()
+    for i in stopaddress:
+        result.append(str(i["stopid"]))
 
     # a list of Strings
     return result 
-
-
-# return a list of all routes available
-def getAllRoutes():
-    routelist = []
-
-    # get data
-    routeinfo_json = open("./static/json/routeinfo.json")
-    routeinfo = json.load(routeinfo_json, object_hook=_decode_dict)
-    routeinfo_json.close()
-
-    for i in routeinfo:
-        routelist.append(i)
-
-    # return a sorted result
-    return sorted(routelist)
-
-
-# return two directions given a specific route
-def getDirections(route):
-    directions = []
-
-    # get data
-    routeinfo_json = open("./static/json/routeinfo.json")
-    routeinfo = json.load(routeinfo_json, object_hook=_decode_dict)
-    routeinfo_json.close()
-
-    directions.extend(routeinfo[route].keys()) 
-
-    return directions
-
-
-# return a stop list given a specific direction
-def getStopList(route, direction):
-    stopdict = []
-
-    # get data
-    routeinfo_json = open("./static/json/routeinfo.json")
-    routeinfo = json.load(routeinfo_json, object_hook=_decode_dict)
-    routeinfo_json.close()
-
-    temp = routeinfo[str(route)][str(direction)]
-
-    stopdict.extend(temp)
-
-    return stopdict   
 
 
 # Get database name

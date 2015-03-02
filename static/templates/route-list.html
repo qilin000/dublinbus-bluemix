@@ -1,0 +1,13 @@
+<div class="search-form">
+    <form action='/routelist'>
+        <select name="route" class="enjoy-select">
+            <option>Choose your route</option>
+            <option ng-repeat="route in routes" value="{{route.route}}">{{route.route}}</option>
+        </select>
+        <input class="search-button pure-button" type="button" value="Search" onclick="ob=this.form.route;window.location = window.location.pathname + '#/' + ob.options[ob.selectedIndex].value;">
+    </form>
+</div>
+<div class="bus">
+    <a href="http://qkirin.deviantart.com/art/A-Dublin-Bus-Gif-507115954" target="_blank"><img src="../static/images/bus.gif" alt="Dublin Bus" height="100px">
+    </a>
+</div>

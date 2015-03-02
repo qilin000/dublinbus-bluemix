@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="busApp">
 
 <head>
     <title>DUBLIN BUS APP</title>
@@ -11,15 +11,96 @@
 
     <!-- icon-->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}" />
-    
+
     <!-- CSS styles -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/nprogress.css') }}" />
 
+    <!-- AngularJS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js"></script>
+    <script>
+        var busApp = angular.module('busApp', ['ngRoute']);
+        // routes
+        busApp.config(function ($routeProvider) {
+            $routeProvider.
+            when('/', {
+                templateUrl: 'static/templates/route-list.html',
+                controller: 'RouteListCtrl'
+            }).
+            when('/:route', {
+                templateUrl: 'static/templates/route-detail.html',
+                controller: 'RouteDetailCtrl'
+            }).
+            when('/:route/:direction', {
+                templateUrl: 'static/templates/direction-detail.html',
+                controller: 'DirectionDetailCtrl'
+            }).
+            otherwise({
+                redirectTo: '/'
+            });
+
+        });
+
+        busApp.factory('routes', function ($http) {
+            var cachedData;
+
+            function getData(callback) {
+                if (cachedData) {
+                    callback(cachedData);
+                } else {
+                    $http.get('static/json/routeinfo.json').success(function (data) {
+                        cachedData = data;
+                        callback(data);
+                    });
+                }
+            }
+
+            return {
+                list: getData
+            };
+        });
+
+        // controllers
+        busApp.controller('RouteListCtrl', function ($scope, routes) {
+            routes.list(function (routes) {
+                $scope.routes = routes;
+            });
+        });
+
+        busApp.controller('RouteDetailCtrl', function ($scope, $routeParams, $http) {
+            $scope.route = $routeParams.route;
+            $http.get('static/json/routeinfo.json').success(function (data) {
+                $scope.routeinfo = data.filter(function (entry) {
+                    return entry.route === $scope.route;
+                })[0];
+            });
+        });
+
+        busApp.controller('DirectionDetailCtrl', function ($scope, $routeParams, $http, $location) {
+            $scope.route = $routeParams.route;
+            $scope.direction = $routeParams.direction;
+            $scope.go = function (stopid) {
+                var searchstop = '/stop/' + stopid;
+                window.location = searchstop;
+            };
+            $http.get('static/json/routeinfo.json').success(function (data) {
+                $scope.routeinfo = data.filter(function (entry) {
+                    return entry.route === $scope.route;
+                })[0];
+                $scope.directioninfo = $scope.routeinfo.info.filter(function (entry) {
+                    return entry.direction === $scope.direction;
+                })[0];
+            });
+        });
+
+        busApp.filter('encodeURI', function () {
+            return window.encodeURI;
+        });
+    </script>
     <!-- Javascript -->
     <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
-
 </head>
 
 <body>
@@ -31,11 +112,15 @@
         </a>
         <div id="menu">
             <div class="pure-menu pure-menu-open">
-                <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120"></a>
+                <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120">
+                </a>
                 <ul>
-                    <li><a href="{{ url_for('index') }}">Search by stop no.</a></li>
-                    <li class="pure-menu-selected"><a href="">Search by route</a></li>
-                    <li><a href="{{ url_for('map') }}">Search on map</a></li>
+                    <li><a href="{{ url_for('index') }}">Search by stop no.</a>
+                    </li>
+                    <li class="pure-menu-selected"><a href="{{ url_for('routelist') }}">Search by route</a>
+                    </li>
+                    <li><a href="{{ url_for('map') }}">Search on map</a>
+                    </li>
                     <li><a href="{{ url_for('faqs') }}">FAQs</a>
                 </ul>
             </div>
@@ -46,23 +131,7 @@
                 <h2>total requests so far: {{ totalrequests }}</h2>
             </div>
             <div class="content">
-                <div class="search-form">
-                    <form action='/routelist' method="post">
-                    <input list='routes' name='routelist' placeholder="Enter your route" required = "required" class="enjoy-input" style="max-width: 450px;" autocomplete="off" autofocus>
-                    <datalist id='routes'>
-                        {% for route in routelist %}
-                        <option value="{{route}}">
-                        {% endfor %}
-                    </datalist>
-                    <button class="search-button pure-button" type="submit"><img src="" alt="" />Search</button>
-                    </form>
-                </div>
-                <div class="bus">
-                    <a href="http://qkirin.deviantart.com/art/A-Dublin-Bus-Gif-507115954" target="_blank"><img src="../static/images/bus.gif" alt="Dublin Bus" height="100px"></a>
-                    {% if errorcode == 1 %}
-                    <h3>Sorry, no data for bus route #{{ route }}</h3>
-                    {% endif %}
-                </div>
+                <div ng-view></div>
             </div>
         </div>
 
