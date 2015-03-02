@@ -9,10 +9,12 @@ Web app page
 
 Notes
 -----
-09Nov2014: working on this app to make it work with Mongodb
+* 09Nov2014: working on this app to make it work with Mongodb
 
-10Nov2014: now this app is working with Mongodb
+* 10Nov2014: now this app is working with Mongodb
 
-05FEB2015: complete "search by bus stop" service
+* 05FEB2015: complete "search by bus stop" service
 
-22FEB2015: add "search by route" service
+* 22FEB2015: add "search by route" service
+
+* 2MAR2015: rebuild "search by route" service using AngularJS
