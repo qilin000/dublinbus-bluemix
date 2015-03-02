@@ -11,7 +11,7 @@
 
     <!-- icon-->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}" />
-    
+
     <!-- CSS styles -->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
@@ -19,7 +19,7 @@
 
     <!-- Javascript -->
     <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
-    
+
 </head>
 
 <body>
@@ -31,11 +31,15 @@
         </a>
         <div id="menu">
             <div class="pure-menu pure-menu-open">
-                <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120"></a>
+                <a class="pure-menu-heading"><img src="{{ url_for('static', filename='images/dublin_bus_black_and_white.png') }}" alt="dublin bus logo" width="120">
+                </a>
                 <ul>
-                    <li class="pure-menu-selected"><a href="{{ url_for('index') }}">Search by stop no.</a></li>
-                    <li><a href="{{ url_for('routelist') }}">Search by route</a></li>
-                    <li><a href="{{ url_for('map') }}">Search by map</a></li>
+                    <li class="pure-menu-selected"><a href="{{ url_for('index') }}">Search by stop no.</a>
+                    </li>
+                    <li><a href="{{ url_for('routelist') }}">Search by route</a>
+                    </li>
+                    <li><a href="{{ url_for('map') }}">Search on map</a>
+                    </li>
                     <li><a href="{{ url_for('faqs') }}">FAQs</a>
                 </ul>
             </div>
@@ -46,12 +50,13 @@
                 <h2>total requests so far: {{ totalrequests }}</h2>
             </div>
             <div class="content">
+                {% if errorcode == 0 %}
                 <div class="rg-container">
                     <div class="rg-header">
                         <div class="rg-hed">Bus Stop #{{ stop }}</div>
                         <div class="rg-subhed">{{ stopAddress }}</div>
                     </div>
-
+                    
                     <div class="rg-content rg-table">
                         <table class="rg-table">
                             <thead>
@@ -78,6 +83,13 @@
                         </div>
                     </div>
                 </div>
+                {% elif errorcode == 1 %}
+                <div class="bus">
+                    <a href="http://qkirin.deviantart.com/art/A-Dublin-Bus-Gif-507115954" target="_blank"><img src="../static/images/bus.gif" alt="Dublin Bus" height="100px">
+                    </a>
+                    <h3>Sorry, no data for bus stop #{{ stop }}</h3> 
+                </div>
+                {% endif %}
             </div>
         </div>
 

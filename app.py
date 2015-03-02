@@ -122,7 +122,7 @@ def direction(route, direction):
     if request.method == "POST":
         stopid = request.form['stopid']
 
-        if route:
+        if stopid:
             return redirect('/stop/' + stopid) 
 
 

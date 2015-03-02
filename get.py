@@ -5,6 +5,8 @@ import os
 import pymongo
 
 # Remove user and password with API key
+user = ""
+password = ""
 
 def getData(stopid):
     # realtime bus information
@@ -147,7 +149,7 @@ def getStopList(route, direction):
     routeinfo = json.load(routeinfo_json, object_hook=_decode_dict)
     routeinfo_json.close()
 
-    temp = routeinfo[str(int(route))][str(direction)]
+    temp = routeinfo[str(route)][str(direction)]
 
     stopdict.extend(temp)
 
