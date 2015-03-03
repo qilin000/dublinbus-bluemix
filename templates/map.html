@@ -20,31 +20,60 @@
     <!-- Javascript -->
     <script src="{{ url_for('static', filename='js/nprogress.js') }}"></script>
 
-    <!-- Map stuff -->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <!-- Google Map stuff -->
     <script>
         function initialize() {
-            var myLatlng = new google.maps.LatLng(53.349799, -6.260312);
-            var mapOptions = {
-                zoom: 17,
-                center: myLatlng
+                var mapOptions = {
+                    zoom: 17
+                };
+
+                var map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+
+                // Try HTML5 geolocation
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var pos = new google.maps.LatLng(position.coords.latitude,
+                            position.coords.longitude);
+
+                        var infowindow = new google.maps.InfoWindow({
+                            map: map,
+                            position: pos,
+                            content: 'Your current location'
+                        });
+
+                        map.setCenter(pos);
+                    }, function () {
+                        handleNoGeolocation(true);
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleNoGeolocation(false);
+                }
+
+                google.maps.event.addDomListener(window, "resize", function () {
+                    var center = map.getCenter();
+                    google.maps.event.trigger(map, "resize");
+                    map.setCenter(center);
+                });
+
+            } // end of initialize()
+        
+        function handleNoGeolocation(errorFlag) {
+            if (errorFlag) {
+                var content = 'Error: The Geolocation service failed.';
+            } else {
+                var content = 'Error: Your browser doesn\'t support geolocation.';
+            }
+
+            var options = {
+                map: map,
+                position: new google.maps.LatLng(53.349799, -6.260312),
+                content: content
             };
 
-            var map = new google.maps.Map(document.getElementById('map-canvas'),
-                mapOptions);
-
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map,
-                title: 'Hello World!'
-            });
-            
-            google.maps.event.addDomListener(window, "resize", function () {
-                var center = map.getCenter();
-                google.maps.event.trigger(map, "resize");
-                map.setCenter(center);
-            });
-
+            var infowindow = new google.maps.InfoWindow(options);
+            map.setCenter(options.position);
         }
 
         function loadScript() {
@@ -96,7 +125,7 @@
         NProgress.done(true);
     </script>
     <script src="{{ url_for('static', filename='js/ui.js') }}"></script>
-    
+
 </body>
 
 </html>
