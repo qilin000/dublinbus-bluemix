@@ -9,8 +9,10 @@ Description
 -----------------------
 Given a specific bus stop, this web application can quickly consult the RTPI API, return real time information of all bus routes and display on the web page. 
 
-* A MongoDB is working behind the scene and records all requests so far;
-* AngularJS is working to rendering JSON files for "search by route" service;
+Technologies behind:
+* Flask is used to do basic routing and rendering and request real time information from RTPI API;
+* A MongoDB is working behind the scene and records all requests and client IP so far;
+* AngularJS is employed to rendering JSON files of bus stops/route information for "search by route" service;
 * It is hosted on IBM Bluemix using CloudFoundry Python buildpack; 
 
 Notes
