@@ -3,7 +3,7 @@ Dublin Bus on Bluemix
 
 Web app page
 -----------------------
-[Dublinbus on Bluemix](http://dublin-bus.mybluemix.net/stopid/262)
+[Dublinbus on Bluemix](http://dublin-bus.mybluemix.net)
 
 Description
 -----------------------
